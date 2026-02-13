@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>KarenOS v1.0 | Karen Marie Kasigila</title>
+  <title>Karen Marie Kasigila | Product Data Scientist</title>
   <meta name="description" content="Product-driven data scientist. Designing intelligent systems for measurable impact.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -11,21 +11,16 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <!-- Scroll Progress Bar -->
+  <!-- Scroll Progress (Creative only) -->
   <div id="scroll-progress" class="scroll-progress" aria-hidden="true"></div>
-
-  <!-- Cursor Glow -->
   <div id="cursor-glow" class="cursor-glow" aria-hidden="true"></div>
+  <div class="particles" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span></div>
 
-  <!-- Floating Particles (CSS) -->
-  <div class="particles" aria-hidden="true">
-    <span></span><span></span><span></span><span></span><span></span>
-  </div>
-
-  <!-- System Navigation -->
+  <!-- Navigation -->
   <nav id="navbar" class="navbar">
-    <a href="#hero" class="nav-logo">KARENOS</a>
-    <ul class="nav-links">
+    <a href="#hero" class="nav-logo creative-only">KARENOS</a>
+    <a href="#recruiter-top" class="nav-logo recruiter-only">KAREN MARIE KASIGILA</a>
+    <ul class="nav-links creative-only">
       <li><a href="#experience">Experience</a></li>
       <li><a href="#systems">Systems</a></li>
       <li><a href="#skills">Skills</a></li>
@@ -33,542 +28,413 @@
       <li><a href="#contact">Contact</a></li>
     </ul>
     <button id="recruiter-toggle" class="nav-recruiter-btn" aria-pressed="false">
-      Recruiter Mode
+      <span class="creative-label">Recruiter Mode</span>
+      <span class="recruiter-label">Creative Mode</span>
     </button>
-    <button class="nav-mobile-toggle" aria-label="Open menu" aria-expanded="false">
-      <span></span><span></span><span></span>
-    </button>
+    <button class="nav-mobile-toggle creative-only" aria-label="Open menu" aria-expanded="false"><span></span><span></span><span></span></button>
   </nav>
 
-  <!-- Recruiter Summary (hidden by default) -->
-  <section id="recruiter-summary" class="recruiter-summary" aria-hidden="true">
-    <div class="container">
-      <h2>2-Minute Summary</h2>
-      <div class="summary-grid">
-        <div class="summary-card"><h3>Core Skills</h3><p>Machine Learning · Product Analytics · Python · SQL · Data Engineering · A/B Testing</p></div>
-        <div class="summary-card"><h3>Target Roles</h3><p>Data Scientist · ML Engineer · Product Analytics · Growth Data</p></div>
-        <div class="summary-card"><h3>Key Metrics</h3><p>25% accuracy lift · 20% pipeline efficiency · Policy-level impact</p></div>
-        <div class="summary-card"><h3>Work Authorization</h3><p>Authorized to work — [Update with your status]</p></div>
+  <!-- ==================== CREATIVE VIEW (Default) ==================== -->
+  <main id="creative-view" class="view-active">
+    <section id="hero" class="hero">
+      <div class="hero-bg-gradient" aria-hidden="true"></div>
+      <div class="container hero-inner">
+        <div class="hero-content reveal">
+          <p class="hero-boot">Booting KarenOS…</p>
+          <h1 class="hero-title">
+            <span class="hero-title-line">KAREN MARIE</span>
+            <span class="hero-title-line accent">KASIGILA</span>
+          </h1>
+          <p class="hero-subtitle">Product-Driven Data Scientist</p>
+          <p class="hero-typing" id="typing-line"></p>
+          <div class="hero-buttons">
+            <a href="#modules" class="btn btn-primary">View Modules</a>
+            <button id="hero-recruiter-btn" class="btn btn-secondary">Recruiter Mode</button>
+            <a href="Karen_Marie_Kasigila_Resume.pdf" class="btn btn-ghost" download>Download Resume</a>
+          </div>
+        </div>
+        <div class="hero-visual reveal">
+          <div class="hero-avatar">
+            <div class="avatar-ring"></div>
+            <div class="avatar-placeholder">KMK</div>
+          </div>
+        </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- Hero: System Boot -->
-  <section id="hero" class="hero">
-    <div class="hero-bg-gradient" aria-hidden="true"></div>
-    <div class="container hero-inner">
-      <div class="hero-content reveal">
-        <p class="hero-boot">Booting KarenOS…</p>
-        <h1 class="hero-title">
-          <span class="hero-title-line">KAREN MARIE</span>
-          <span class="hero-title-line accent">KASIGILA</span>
-        </h1>
-        <p class="hero-subtitle">Product-Driven Data Scientist</p>
-        <p class="hero-typing" id="typing-line"></p>
-        <div class="hero-buttons">
-          <a href="#modules" class="btn btn-primary">View Modules</a>
-          <button id="hero-recruiter-btn" class="btn btn-secondary">Recruiter Mode</button>
-          <a href="Karen_Marie_Kasigila_Resume.pdf" class="btn btn-ghost" download>Download Resume</a>
+    <section id="metrics" class="metrics section">
+      <div class="container">
+        <h2 class="section-title">Live Metrics</h2>
+        <div class="metrics-grid">
+          <div class="metric-card reveal"><span class="metric-label">Revenue Impact Simulated</span><span class="metric-value" data-target="23" data-suffix="%">0</span></div>
+          <div class="metric-card reveal"><span class="metric-label">Experiment Win Rate</span><span class="metric-value" data-target="71" data-suffix="%">0</span></div>
+          <div class="metric-card reveal"><span class="metric-label">Systems Built</span><span class="metric-value" data-target="12" data-suffix="">0</span></div>
+        </div>
+        <div class="slider-panel reveal">
+          <h3>Simulate Product Optimization</h3>
+          <div class="slider-control">
+            <label><span class="slider-label">Conversion Rate</span><span class="slider-value" id="conv-value">42%</span></label>
+            <input type="range" id="conv-slider" min="20" max="80" value="42">
+          </div>
+          <div class="slider-control">
+            <label><span class="slider-label">Revenue</span><span class="slider-value" id="revenue-value">$2.4M</span></label>
+            <input type="range" id="revenue-slider" min="1" max="10" value="2.4" step="0.1">
+          </div>
+          <div class="slider-control">
+            <label><span class="slider-label">Efficiency</span><span class="slider-value" id="efficiency-value">87%</span></label>
+            <input type="range" id="efficiency-slider" min="50" max="99" value="87">
+          </div>
         </div>
       </div>
-      <div class="hero-visual reveal">
-        <div class="hero-avatar">
-          <div class="avatar-ring"></div>
-          <div class="avatar-placeholder">KMK</div>
-        </div>
-      </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- Live Metrics Panel -->
-  <section id="metrics" class="metrics section">
-    <div class="container">
-      <h2 class="section-title">Live Metrics</h2>
-      <div class="metrics-grid">
-        <div class="metric-card reveal">
-          <span class="metric-label">Revenue Impact Simulated</span>
-          <span class="metric-value" data-target="23" data-suffix="%">0</span>
-        </div>
-        <div class="metric-card reveal">
-          <span class="metric-label">Experiment Win Rate</span>
-          <span class="metric-value" data-target="71" data-suffix="%">0</span>
-        </div>
-        <div class="metric-card reveal">
-          <span class="metric-label">Systems Built</span>
-          <span class="metric-value" data-target="12" data-suffix="">0</span>
-        </div>
-      </div>
-      <div class="slider-panel reveal">
-        <h3>Simulate Product Optimization</h3>
-        <div class="slider-control">
-          <label>
-            <span class="slider-label">Conversion Rate</span>
-            <span class="slider-value" id="conv-value">42%</span>
-          </label>
-          <input type="range" id="conv-slider" min="20" max="80" value="42">
-        </div>
-        <div class="slider-control">
-          <label>
-            <span class="slider-label">Revenue</span>
-            <span class="slider-value" id="revenue-value">$2.4M</span>
-          </label>
-          <input type="range" id="revenue-slider" min="1" max="10" value="2.4" step="0.1">
-        </div>
-        <div class="slider-control">
-          <label>
-            <span class="slider-label">Efficiency</span>
-            <span class="slider-value" id="efficiency-value">87%</span>
-          </label>
-          <input type="range" id="efficiency-slider" min="50" max="99" value="87">
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Experience Timeline -->
-  <section id="experience" class="experience section">
-    <div class="container">
-      <h2 class="section-title">Experience</h2>
-      <div class="timeline">
-        <div class="timeline-item" data-expandable>
-          <div class="timeline-node"></div>
-          <div class="timeline-card">
-            <button class="timeline-card-header" aria-expanded="false" aria-controls="exp-1">
-              <div class="timeline-card-head">
-                <h3>Data Science Intern</h3>
-                <span class="timeline-org">Ifakara Health Institute</span>
+    <section id="experience" class="experience section">
+      <div class="container">
+        <h2 class="section-title">Experience</h2>
+        <div class="timeline">
+          <div class="timeline-item" data-expandable>
+            <div class="timeline-node"></div>
+            <div class="timeline-card">
+              <button class="timeline-card-header" aria-expanded="false" aria-controls="exp-1">
+                <div class="timeline-card-head"><h3>Data Science Intern</h3><span class="timeline-org">Ifakara Health Institute</span></div>
+                <span class="timeline-duration">Jun 2025 – Aug 2025</span><span class="timeline-expand-icon">+</span>
+              </button>
+              <div id="exp-1" class="timeline-card-body" hidden>
+                <ul class="impact-list">
+                  <li>Analyzed national malaria and community-health data using Python, SQL, and Pandas to identify high-risk zones</li>
+                  <li>Built data dashboards that improved monitoring and reporting accuracy by 25%</li>
+                  <li>Presented statistical findings to research and policy teams to support data-driven decision-making</li>
+                </ul>
+                <div class="tech-tags"><span>Python</span><span>SQL</span><span>Pandas</span><span>Dashboards</span></div>
               </div>
-              <span class="timeline-duration">Jun 2025 – Aug 2025</span>
-              <span class="timeline-expand-icon">+</span>
-            </button>
-            <div id="exp-1" class="timeline-card-body" hidden>
-              <ul class="impact-list">
-                <li>Analyzed national malaria and community-health data using Python, SQL, and Pandas to identify high-risk zones</li>
-                <li>Built data dashboards that improved monitoring and reporting accuracy by 25%</li>
-                <li>Presented statistical findings to research and policy teams to support data-driven decision-making</li>
-              </ul>
-              <div class="tech-tags"><span>Python</span><span>SQL</span><span>Pandas</span><span>Dashboards</span></div>
             </div>
           </div>
-        </div>
-
-        <div class="timeline-item" data-expandable>
-          <div class="timeline-node"></div>
-          <div class="timeline-card">
-            <button class="timeline-card-header" aria-expanded="false" aria-controls="exp-2">
-              <div class="timeline-card-head">
-                <h3>Climate Finance Strategy Intern</h3>
-                <span class="timeline-org">Sustainable Solutions for Africa</span>
+          <div class="timeline-item" data-expandable>
+            <div class="timeline-node"></div>
+            <div class="timeline-card">
+              <button class="timeline-card-header" aria-expanded="false" aria-controls="exp-2">
+                <div class="timeline-card-head"><h3>Data for Good Hackathon</h3><span class="timeline-org">J.P. Morgan Chase & Co.</span></div>
+                <span class="timeline-duration">Apr 2025</span><span class="timeline-expand-icon">+</span>
+              </button>
+              <div id="exp-2" class="timeline-card-body" hidden>
+                <ul class="impact-list">
+                  <li>Built geospatial analytics dashboard (React, Node.js, Mapbox) mapping underserved ZIP codes</li>
+                  <li>Designed Compass Connect, an AI-driven platform visualizing social-service impact across regions</li>
+                </ul>
+                <div class="tech-tags"><span>React</span><span>Node.js</span><span>Mapbox</span><span>Geospatial</span></div>
               </div>
-              <span class="timeline-duration">Jun 2024 – Aug 2024</span>
-              <span class="timeline-expand-icon">+</span>
-            </button>
-            <div id="exp-2" class="timeline-card-body" hidden>
-              <ul class="impact-list">
-                <li>Led the design of Namibia's Climate Finance Strategy, aligning national policy with UN SDG targets</li>
-                <li>Developed financial models in Excel and Python to optimize climate-funding allocation, increasing accuracy by 25%</li>
-                <li>Produced visual reports and presentations adopted by senior policymakers</li>
-              </ul>
-              <div class="tech-tags"><span>Python</span><span>Excel</span><span>Financial Modeling</span><span>Policy</span></div>
             </div>
           </div>
-        </div>
-
-        <div class="timeline-item" data-expandable>
-          <div class="timeline-node"></div>
-          <div class="timeline-card">
-            <button class="timeline-card-header" aria-expanded="false" aria-controls="exp-3">
-              <div class="timeline-card-head">
-                <h3>Data Science Intern</h3>
-                <span class="timeline-org">NMB Bank Plc</span>
+          <div class="timeline-item" data-expandable>
+            <div class="timeline-node"></div>
+            <div class="timeline-card">
+              <button class="timeline-card-header" aria-expanded="false" aria-controls="exp-3">
+                <div class="timeline-card-head"><h3>Climate Finance Strategy Intern</h3><span class="timeline-org">Sustainable Solutions for Africa</span></div>
+                <span class="timeline-duration">Jun 2024 – Aug 2024</span><span class="timeline-expand-icon">+</span>
+              </button>
+              <div id="exp-3" class="timeline-card-body" hidden>
+                <ul class="impact-list">
+                  <li>Led the design of Namibia's Climate Finance Strategy, aligning national policy with UN SDG targets</li>
+                  <li>Developed financial models in Excel and Python to optimize climate-funding allocation, increasing accuracy by 25%</li>
+                  <li>Produced visual reports and presentations adopted by senior policymakers</li>
+                </ul>
+                <div class="tech-tags"><span>Python</span><span>Excel</span><span>Financial Modeling</span><span>Policy</span></div>
               </div>
-              <span class="timeline-duration">May 2023 – Jun 2023</span>
-              <span class="timeline-expand-icon">+</span>
-            </button>
-            <div id="exp-3" class="timeline-card-body" hidden>
-              <ul class="impact-list">
-                <li>Automated credit-risk analytics pipelines with Python and SQL, cutting report generation time by 20%</li>
-                <li>Created predictive models to assess loan-default probability, informing SME lending strategy</li>
-                <li>Built Tableau dashboards used by management to track portfolio health</li>
-              </ul>
-              <div class="tech-tags"><span>Python</span><span>SQL</span><span>Tableau</span><span>Predictive Modeling</span></div>
             </div>
           </div>
-        </div>
-
-        <div class="timeline-item" data-expandable>
-          <div class="timeline-node"></div>
-          <div class="timeline-card">
-            <button class="timeline-card-header" aria-expanded="false" aria-controls="exp-4">
-              <div class="timeline-card-head">
-                <h3>Data for Good Hackathon</h3>
-                <span class="timeline-org">J.P. Morgan Chase & Co.</span>
+          <div class="timeline-item" data-expandable>
+            <div class="timeline-node"></div>
+            <div class="timeline-card">
+              <button class="timeline-card-header" aria-expanded="false" aria-controls="exp-4">
+                <div class="timeline-card-head"><h3>Data Science Intern</h3><span class="timeline-org">NMB Bank Plc</span></div>
+                <span class="timeline-duration">May 2023 – Jun 2023</span><span class="timeline-expand-icon">+</span>
+              </button>
+              <div id="exp-4" class="timeline-card-body" hidden>
+                <ul class="impact-list">
+                  <li>Automated credit-risk analytics pipelines with Python and SQL, cutting report generation time by 20%</li>
+                  <li>Created predictive models to assess loan-default probability, informing SME lending strategy</li>
+                  <li>Built Tableau dashboards used by management to track portfolio health</li>
+                </ul>
+                <div class="tech-tags"><span>Python</span><span>SQL</span><span>Tableau</span><span>Predictive Modeling</span></div>
               </div>
-              <span class="timeline-duration">Apr 2025</span>
-              <span class="timeline-expand-icon">+</span>
-            </button>
-            <div id="exp-4" class="timeline-card-body" hidden>
-              <ul class="impact-list">
-                <li>Built geospatial analytics dashboard (React, Node.js, Mapbox) mapping underserved ZIP codes</li>
-                <li>Designed Compass Connect, an AI-driven platform visualizing social-service impact across regions</li>
-              </ul>
-              <div class="tech-tags"><span>React</span><span>Node.js</span><span>Mapbox</span><span>Geospatial</span></div>
             </div>
           </div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- Systems Architecture -->
-  <section id="systems" class="systems section">
-    <div class="container">
-      <h2 class="section-title">Systems Architecture</h2>
-      <p class="systems-subtitle">End-to-end data flow from ingestion to decision</p>
-      <div class="architecture">
-        <div class="arch-row arch-row-1">
-          <div class="arch-block" data-tooltip="Ingest, validate, and store raw data. APIs, ETL pipelines, and data lake ingestion.">Data Collection</div>
+    <section id="systems" class="systems section">
+      <div class="container">
+        <h2 class="section-title">Systems Architecture</h2>
+        <p class="systems-subtitle">End-to-end data flow from ingestion to decision</p>
+        <div class="architecture">
+          <div class="arch-row"><div class="arch-block" data-tooltip="Ingest, validate, and store raw data. APIs, ETL pipelines, and data lake ingestion.">Data Collection</div></div>
+          <div class="arch-connector"></div>
+          <div class="arch-row"><div class="arch-block" data-tooltip="Clean, transform, and aggregate. dbt, Spark, and batch processing.">Processing</div></div>
+          <div class="arch-connector"></div>
+          <div class="arch-row"><div class="arch-block" data-tooltip="Train, validate, and version models. ML pipelines and feature stores.">Modeling</div></div>
+          <div class="arch-connector"></div>
+          <div class="arch-row"><div class="arch-block" data-tooltip="Ship to production. CI/CD, containers, and monitoring.">Deployment</div></div>
+          <div class="arch-connector"></div>
+          <div class="arch-row"><div class="arch-block arch-block-accent" data-tooltip="Turn predictions into actions. A/B tests, dashboards, and product signals.">Decision Layer</div></div>
         </div>
-        <div class="arch-connector arch-connector-1"></div>
-        <div class="arch-row arch-row-2">
-          <div class="arch-block" data-tooltip="Clean, transform, and aggregate. dbt, Spark, and batch processing.">Processing</div>
-        </div>
-        <div class="arch-connector arch-connector-2"></div>
-        <div class="arch-row arch-row-3">
-          <div class="arch-block" data-tooltip="Train, validate, and version models. ML pipelines and feature stores.">Modeling</div>
-        </div>
-        <div class="arch-connector arch-connector-3"></div>
-        <div class="arch-row arch-row-4">
-          <div class="arch-block" data-tooltip="Ship to production. CI/CD, containers, and monitoring.">Deployment</div>
-        </div>
-        <div class="arch-connector arch-connector-4"></div>
-        <div class="arch-row arch-row-5">
-          <div class="arch-block arch-block-accent" data-tooltip="Turn predictions into actions. A/B tests, dashboards, and product signals.">Decision Layer</div>
+        <div class="arch-tooltip" id="arch-tooltip"></div>
+      </div>
+    </section>
+
+    <section id="skills" class="skills section">
+      <div class="container">
+        <h2 class="section-title">Skill Intelligence Map</h2>
+        <div class="skills-grid">
+          <div class="skill-card" data-expandable><div class="skill-card-inner"><h3>Machine Learning</h3><p class="skill-preview">Python · scikit-learn · TensorFlow · XGBoost</p><div class="skill-detail" hidden><p>Python · scikit-learn · TensorFlow · PyTorch · XGBoost · Feature Engineering · Predictive Modeling</p></div></div></div>
+          <div class="skill-card" data-expandable><div class="skill-card-inner"><h3>Product Analytics</h3><p class="skill-preview">SQL · Looker · Amplitude · Funnels</p><div class="skill-detail" hidden><p>SQL · Looker · Amplitude · Mixpanel · Cohort Analysis · Funnels · Data Visualization</p></div></div></div>
+          <div class="skill-card" data-expandable><div class="skill-card-inner"><h3>Data Engineering</h3><p class="skill-preview">BigQuery · Spark · Airflow · ETL</p><div class="skill-detail" hidden><p>BigQuery · Snowflake · Spark · Airflow · dbt · ETL Pipelines · Data Pipelines</p></div></div></div>
+          <div class="skill-card" data-expandable><div class="skill-card-inner"><h3>Experimentation</h3><p class="skill-preview">A/B Testing · Statistical Significance</p><div class="skill-detail" hidden><p>A/B Testing · Statistical Significance · Power Analysis · Causal Inference · Hypothesis Testing</p></div></div></div>
+          <div class="skill-card" data-expandable><div class="skill-card-inner"><h3>Cloud & Tools</h3><p class="skill-preview">AWS · GCP · Git · Docker</p><div class="skill-detail" hidden><p>AWS · GCP · Git · Docker · Jupyter · CI/CD · Firebase</p></div></div></div>
         </div>
       </div>
-      <div class="arch-tooltip" id="arch-tooltip"></div>
-    </div>
-  </section>
+    </section>
 
-  <!-- Skill Intelligence Map -->
-  <section id="skills" class="skills section">
-    <div class="container">
-      <h2 class="section-title">Skill Intelligence Map</h2>
-      <div class="skills-grid">
-        <div class="skill-card" data-expandable>
-          <div class="skill-card-inner">
-            <h3>Machine Learning</h3>
-            <p class="skill-preview">Python · scikit-learn · TensorFlow · XGBoost</p>
-            <div class="skill-detail" hidden>
-              <p>Python · scikit-learn · TensorFlow · PyTorch · XGBoost · Feature Engineering · Predictive Modeling</p>
+    <section id="modules" class="modules section">
+      <div class="container">
+        <h2 class="section-title">KarenOS Modules</h2>
+        <p class="modules-intro">Designed for high-leverage product environments.</p>
+
+        <!-- Engine 1: Revenue & Experimentation -->
+        <div class="module-block" data-module="revenue">
+          <button class="module-header" aria-expanded="false" aria-controls="module-revenue">
+            <span class="module-badge">Revenue & Experimentation Engine</span><span class="module-expand">+</span>
+          </button>
+          <div id="module-revenue" class="module-body" hidden>
+            <div class="module-framing">
+              <h3>From hypothesis to rollout — quantified.</h3>
+              <p>Modern product teams don't fail because of bad ideas. They fail because of poor experiment design and premature rollout decisions.</p>
+              <p>This system simulates controlled experimentation under realistic traffic, variance, and risk conditions. It models revenue impact, statistical confidence, and rollout thresholds before product deployment.</p>
+              <p class="module-impact">Designed to reduce false positives, prevent revenue leakage, and improve launch discipline.</p>
+              <ul class="module-bullets">
+                <li>A/B test design under traffic constraints</li><li>Confidence interval simulation</li><li>Revenue lift modeling</li><li>Risk-adjusted rollout decisions</li><li>KPI sensitivity analysis</li>
+              </ul>
+              <div class="module-framing-panel">
+                <p><strong>Primary Objective:</strong> Increase conversion while controlling false-positive risk.</p>
+                <p><strong>Decision Framework:</strong> Does the lift exceed statistical noise? Is the projected revenue impact meaningful? Is the rollout risk acceptable? This engine models those tradeoffs dynamically.</p>
+              </div>
+              <p class="module-tagline">Built to mirror how high-leverage product teams evaluate launches.</p>
+            </div>
+            <div class="revenue-engine">
+              <div class="revenue-left">
+                <div class="revenue-control"><label>Traffic Volume (DAU)</label><input type="range" id="rev-traffic" min="10" max="100" value="50"><span class="revenue-val" id="rev-traffic-val">50K</span></div>
+                <div class="revenue-control"><label>Baseline Conversion %</label><input type="number" id="rev-conv" min="0.5" max="15" step="0.1" value="3"></div>
+                <div class="revenue-control"><label>Variant Uplift %</label><input type="range" id="rev-uplift" min="0" max="50" value="12"><span class="revenue-val" id="rev-uplift-val">12%</span></div>
+                <div class="revenue-control"><label>ARPU ($)</label><input type="number" id="rev-arpu" min="10" max="500" value="100"></div>
+                <div class="revenue-control"><label>Experiment Duration (days)</label><select id="rev-duration"><option value="7">7</option><option value="14" selected>14</option><option value="21">21</option><option value="28">28</option></select></div>
+                <div class="revenue-control"><label>Segment</label><select id="rev-segment"><option value="all">All Users</option><option value="new">New Users</option><option value="power">Power Users</option><option value="churn">Churn Risk</option></select></div>
+              </div>
+              <div class="revenue-right">
+                <div class="revenue-output"><span class="revenue-output-label">Expected Revenue Lift</span><span class="revenue-output-value" id="rev-impact">$0</span></div>
+                <div class="revenue-ci"><span class="revenue-output-label">Confidence Interval</span><div class="ci-band" id="rev-ci-band"></div><span class="ci-range" id="rev-ci-range">—</span></div>
+                <div class="revenue-stat"><span class="revenue-output-label">Statistical Significance</span><span class="revenue-output-value" id="rev-significance">—</span></div>
+                <div class="revenue-risk"><span class="revenue-output-label">Risk of False Positive</span><div class="risk-meter"><div class="risk-fill" id="rev-risk-fill"></div></div><span id="rev-risk-pct">—</span></div>
+                <div class="revenue-decision"><span class="revenue-output-label">Recommendation</span><span class="decision-badge" id="rev-decision">—</span></div>
+              </div>
+            </div>
+            <div class="module-diagram"><div class="diagram-flow"><span class="diagram-node">Traffic</span><span class="diagram-arrow">→</span><span class="diagram-node">Experiment</span><span class="diagram-arrow">→</span><span class="diagram-node">Statistical Engine</span><span class="diagram-arrow">→</span><span class="diagram-node">Revenue Projection</span><span class="diagram-arrow">→</span><span class="diagram-node diagram-accent">Rollout Strategy</span></div></div>
+          </div>
+        </div>
+
+        <!-- Engine 2: Risk-Aware Optimization -->
+        <div class="module-block" data-module="risk">
+          <button class="module-header" aria-expanded="false" aria-controls="module-risk"><span class="module-badge">Risk-Aware Optimization Model</span><span class="module-expand">+</span></button>
+          <div id="module-risk" class="module-body" hidden>
+            <div class="module-framing">
+              <h3>Balancing detection, friction, and revenue impact.</h3>
+              <p>Every optimization system exists under risk constraints. Aggressive thresholds reduce loss exposure but increase user friction. Conservative thresholds protect experience but increase operational risk.</p>
+              <p>This system models risk scoring, threshold tuning, and cost tradeoffs under simulated behavioral variability.</p>
+              <p class="module-impact">Designed for high-stakes environments where detection accuracy directly impacts revenue and trust.</p>
+              <ul class="module-bullets"><li>Classification threshold optimization</li><li>Precision vs recall tradeoffs</li><li>Loss prevention modeling</li><li>Cost-of-friction analysis</li><li>Risk-adjusted decision logic</li></ul>
+              <div class="module-framing-panel"><p><strong>Primary Objective:</strong> Minimize operational loss while preserving product experience.</p><p><strong>Optimization Constraint:</strong> Detection sensitivity must align with acceptable friction thresholds.</p></div>
+              <p class="module-tagline">Engineered for product environments operating under regulatory and financial constraints.</p>
+            </div>
+            <div class="risk-engine">
+              <div class="risk-controls">
+                <div class="risk-control"><label>Sensitivity</label><input type="range" id="risk-sensitivity" min="0" max="100" value="70"><span id="risk-sens-val">70%</span></div>
+                <div class="risk-control"><label>Risk Tolerance</label><input type="range" id="risk-tolerance" min="0" max="100" value="30"><span id="risk-tol-val">30%</span></div>
+              </div>
+              <div class="risk-panels">
+                <div class="risk-main">
+                  <div class="risk-metric"><span class="risk-metric-label">Live Risk Probability</span><span class="risk-metric-value" id="risk-prob">—</span></div>
+                  <div class="risk-metric"><span class="risk-metric-label">Alert Trigger</span><span class="risk-alert" id="risk-alert">INACTIVE</span></div>
+                  <div class="risk-metric"><span class="risk-metric-label">Estimated Loss Avoided</span><span class="risk-metric-value" id="risk-loss">$0</span></div>
+                </div>
+                <div class="risk-chart"><span class="risk-chart-label">Precision vs Recall</span><div class="pr-curve"><svg viewBox="0 0 200 120" preserveAspectRatio="none"><path id="pr-path" d="" fill="none" stroke="var(--accent-pink)" stroke-width="2"/></svg></div></div>
+              </div>
+              <div class="module-diagram risk-diagram"><div class="diagram-flow diagram-compact"><span class="diagram-node">Kafka</span><span class="diagram-arrow">→</span><span class="diagram-node">Spark</span><span class="diagram-arrow">→</span><span class="diagram-node">Feature Store</span><span class="diagram-arrow">→</span><span class="diagram-node">Scoring API</span><span class="diagram-arrow">→</span><span class="diagram-node diagram-accent">Monitor</span></div></div>
             </div>
           </div>
         </div>
-        <div class="skill-card" data-expandable>
-          <div class="skill-card-inner">
-            <h3>Product Analytics</h3>
-            <p class="skill-preview">SQL · Looker · Amplitude · Funnels</p>
-            <div class="skill-detail" hidden>
-              <p>SQL · Looker · Amplitude · Mixpanel · Cohort Analysis · Funnels · Data Visualization</p>
+
+        <!-- Engine 3: Architecture Simulator -->
+        <div class="module-block" data-module="arch">
+          <button class="module-header" aria-expanded="false" aria-controls="module-arch"><span class="module-badge">Scalable Analytics Architecture Simulator</span><span class="module-expand">+</span></button>
+          <div id="module-arch" class="module-body" hidden>
+            <div class="module-framing">
+              <h3>Aligning architecture with product maturity.</h3>
+              <p>Data products fail when infrastructure does not scale with growth. This simulator dynamically reconfigures data architecture based on organizational scale — startup, growth-stage, or enterprise.</p>
+              <p class="module-impact">Designed to demonstrate how analytics infrastructure must evolve alongside product velocity.</p>
+              <ul class="module-bullets"><li>Data warehouse design logic</li><li>Pipeline architecture tradeoffs</li><li>Monitoring & observability planning</li><li>Cost-performance optimization</li><li>Infrastructure scalability modeling</li></ul>
+              <div class="module-framing-panel"><p><strong>Primary Objective:</strong> Support experimentation velocity without sacrificing reliability.</p><p><strong>Scaling Principle:</strong> Architecture must evolve with traffic, complexity, and deployment frequency.</p></div>
+              <p class="module-tagline">Built to reflect production-aware analytics system design.</p>
             </div>
-          </div>
-        </div>
-        <div class="skill-card" data-expandable>
-          <div class="skill-card-inner">
-            <h3>Data Engineering</h3>
-            <p class="skill-preview">BigQuery · Spark · Airflow · ETL</p>
-            <div class="skill-detail" hidden>
-              <p>BigQuery · Snowflake · Spark · Airflow · dbt · ETL Pipelines · Data Pipelines</p>
-            </div>
-          </div>
-        </div>
-        <div class="skill-card" data-expandable>
-          <div class="skill-card-inner">
-            <h3>Experimentation</h3>
-            <p class="skill-preview">A/B Testing · Statistical Significance</p>
-            <div class="skill-detail" hidden>
-              <p>A/B Testing · Statistical Significance · Power Analysis · Causal Inference · Hypothesis Testing</p>
-            </div>
-          </div>
-        </div>
-        <div class="skill-card" data-expandable>
-          <div class="skill-card-inner">
-            <h3>Cloud & Tools</h3>
-            <p class="skill-preview">AWS · GCP · Git · Docker</p>
-            <div class="skill-detail" hidden>
-              <p>AWS · GCP · Git · Docker · Jupyter · CI/CD · Firebase</p>
+            <div class="arch-simulator">
+              <div class="arch-selector"><button class="scale-btn active" data-scale="startup">Startup</button><button class="scale-btn" data-scale="growth">Growth</button><button class="scale-btn" data-scale="enterprise">Enterprise</button></div>
+              <div class="arch-content">
+                <div class="arch-diagram" id="arch-diagram">
+                  <div class="arch-layer" data-layer="storage" data-tooltip="Data storage and persistence layer. Scales from single DB to distributed data lake."></div>
+                  <div class="arch-layer" data-layer="processing" data-tooltip="ETL, transformation, and feature computation. Batch to streaming."></div>
+                  <div class="arch-layer" data-layer="modeling" data-tooltip="Model training, validation, and inference. Offline to real-time."></div>
+                  <div class="arch-layer" data-layer="deployment" data-tooltip="CI/CD, orchestration, and serving infrastructure."></div>
+                  <div class="arch-layer" data-layer="monitoring" data-tooltip="Observability, alerting, and model monitoring."></div>
+                </div>
+                <div class="arch-metrics">
+                  <div class="arch-metric"><span class="arch-metric-label">Latency</span><span class="arch-metric-value" id="arch-latency">—</span></div>
+                  <div class="arch-metric"><span class="arch-metric-label">Monthly Cost</span><span class="arch-metric-value" id="arch-cost">—</span></div>
+                  <div class="arch-metric"><span class="arch-metric-label">Reliability</span><span class="arch-metric-value" id="arch-reliability">—</span></div>
+                  <div class="arch-metric"><span class="arch-metric-label">Complexity</span><span class="arch-metric-value" id="arch-complexity">—</span></div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- KarenOS Modules -->
-  <section id="modules" class="modules section">
-    <div class="container">
-      <h2 class="section-title">KarenOS Modules</h2>
-      <p class="modules-intro">Designed for high-leverage product environments.</p>
+    <section id="contact" class="contact section">
+      <div class="container">
+        <h2 class="section-title">Let's Build Something That Matters.</h2>
+        <p class="contact-subtitle">Product. Systems. Impact.</p>
+        <div class="contact-buttons">
+          <a href="mailto:Karen_Marie1@icloud.com" class="contact-btn">Email</a>
+          <a href="https://linkedin.com/in/karen-marie-kasigila-443b73242" target="_blank" rel="noopener noreferrer" class="contact-btn">LinkedIn</a>
+          <a href="https://github.com/kasigila" target="_blank" rel="noopener noreferrer" class="contact-btn">GitHub</a>
+          <a href="Karen_Marie_Kasigila_Resume.pdf" class="contact-btn" download>Resume</a>
+        </div>
+      </div>
+    </section>
+  </main>
 
-      <!-- Module 1: Experimentation & Revenue Decision Engine -->
-      <div class="module-block" data-module="revenue">
-        <button class="module-header" aria-expanded="false" aria-controls="module-revenue">
-          <span class="module-badge">Experimentation & Revenue Decision Engine</span>
-          <span class="module-expand">+</span>
-        </button>
-        <div id="module-revenue" class="module-body" hidden>
-          <div class="module-framing">
-            <h3>From hypothesis to rollout — quantified.</h3>
-            <p>Modern product teams don't fail because of bad ideas. They fail because of poor experiment design and premature rollout decisions.</p>
-            <p>This system simulates controlled experimentation under realistic traffic, variance, and risk conditions. It models revenue impact, statistical confidence, and rollout thresholds before product deployment.</p>
-            <p class="module-impact">Designed to reduce false positives, prevent revenue leakage, and improve launch discipline.</p>
-            <ul class="module-bullets">
-              <li>A/B test design under traffic constraints</li>
-              <li>Confidence interval simulation</li>
-              <li>Revenue lift modeling</li>
-              <li>Risk-adjusted rollout decisions</li>
-              <li>KPI sensitivity analysis</li>
+  <!-- ==================== RECRUITER VIEW (Hidden by default) ==================== -->
+  <main id="recruiter-view" class="view-hidden">
+    <div id="recruiter-top" class="recruiter-container">
+      <header class="recruiter-header">
+        <h1 class="recruiter-name">KAREN MARIE KASIGILA</h1>
+        <p class="recruiter-title">Product Data Scientist</p>
+      </header>
+
+      <section class="recruiter-section">
+        <h2 class="recruiter-h2">Executive Snapshot</h2>
+        <ul class="recruiter-snapshot">
+          <li>3+ years applied data experience across health, finance, and climate</li>
+          <li>Product analytics + ML systems with focus on revenue optimization and experimentation</li>
+          <li>Infrastructure-aware thinking: ETL pipelines, dashboards, predictive modeling</li>
+        </ul>
+      </section>
+
+      <section class="recruiter-section">
+        <h2 class="recruiter-h2">Target Roles</h2>
+        <div class="recruiter-roles">
+          <span>Product Data Scientist</span>
+          <span>Growth Data Scientist</span>
+          <span>ML Product Analyst</span>
+        </div>
+      </section>
+
+      <section class="recruiter-section">
+        <h2 class="recruiter-h2">Core Stack</h2>
+        <p class="recruiter-stack">Python | SQL | dbt | Snowflake | ML | Experimentation | AWS</p>
+      </section>
+
+      <section class="recruiter-section">
+        <h2 class="recruiter-h2">Work Authorization</h2>
+        <p class="recruiter-auth">Canadian Study Permit → PGWP Eligible 2027</p>
+      </section>
+
+      <section class="recruiter-section">
+        <h2 class="recruiter-h2">Role Lens</h2>
+        <p class="recruiter-lens-desc">Filter experience by role fit:</p>
+        <div class="role-lens-buttons">
+          <button class="role-lens-btn active" data-lens="all">All</button>
+          <button class="role-lens-btn" data-lens="product-ds">Product DS</button>
+          <button class="role-lens-btn" data-lens="growth-ds">Growth DS</button>
+          <button class="role-lens-btn" data-lens="ml-engineer">ML Engineer</button>
+        </div>
+      </section>
+
+      <section class="recruiter-section">
+        <h2 class="recruiter-h2">Impact Experience</h2>
+        <div id="recruiter-experience" class="recruiter-experience">
+          <article class="recruiter-role" data-relevance='{"product-ds":2,"growth-ds":2,"ml-engineer":1}' data-date="2025-06">
+            <div class="recruiter-role-head"><h3>Data Science Intern</h3><span class="recruiter-org">Ifakara Health Institute</span><span class="recruiter-date">Jun 2025 – Aug 2025</span></div>
+            <ul class="recruiter-bullets">
+              <li data-lens="product-ds growth-ds">Analyzed national malaria and community-health data using Python, SQL, and Pandas to identify high-risk zones</li>
+              <li data-lens="growth-ds">Built data dashboards that improved monitoring and reporting accuracy by 25%</li>
+              <li data-lens="product-ds">Presented statistical findings to research and policy teams to support data-driven decision-making</li>
             </ul>
-            <div class="module-framing-panel">
-              <p><strong>Primary Objective:</strong> Increase conversion while controlling false-positive risk.</p>
-              <p><strong>Decision Framework:</strong> Does the lift exceed statistical noise? Is the projected revenue impact meaningful? Is the rollout risk acceptable? This engine models those tradeoffs dynamically.</p>
-            </div>
-            <p class="module-tagline">Built to mirror how high-leverage product teams evaluate launches.</p>
-          </div>
-          <div class="revenue-engine">
-            <div class="revenue-left">
-              <div class="revenue-control">
-                <label>Traffic Volume (DAU)</label>
-                <input type="range" id="rev-traffic" min="10" max="100" value="50">
-                <span class="revenue-val" id="rev-traffic-val">50K</span>
-              </div>
-              <div class="revenue-control">
-                <label>Baseline Conversion %</label>
-                <input type="number" id="rev-conv" min="0.5" max="15" step="0.1" value="3">
-              </div>
-              <div class="revenue-control">
-                <label>Variant Uplift %</label>
-                <input type="range" id="rev-uplift" min="0" max="50" value="12">
-                <span class="revenue-val" id="rev-uplift-val">12%</span>
-              </div>
-              <div class="revenue-control">
-                <label>Experiment Duration (days)</label>
-                <select id="rev-duration">
-                  <option value="7">7</option>
-                  <option value="14" selected>14</option>
-                  <option value="21">21</option>
-                  <option value="28">28</option>
-                </select>
-              </div>
-              <div class="revenue-control">
-                <label>Segment</label>
-                <select id="rev-segment">
-                  <option value="all">All Users</option>
-                  <option value="new">New Users</option>
-                  <option value="power">Power Users</option>
-                  <option value="churn">Churn Risk</option>
-                </select>
-              </div>
-            </div>
-            <div class="revenue-right">
-              <div class="revenue-output">
-                <span class="revenue-output-label">Expected Revenue Lift</span>
-                <span class="revenue-output-value" id="rev-impact">$0</span>
-              </div>
-              <div class="revenue-ci">
-                <span class="revenue-output-label">Confidence Interval</span>
-                <div class="ci-band" id="rev-ci-band"></div>
-                <span class="ci-range" id="rev-ci-range">—</span>
-              </div>
-              <div class="revenue-stat">
-                <span class="revenue-output-label">Statistical Significance</span>
-                <span class="revenue-output-value" id="rev-significance">—</span>
-              </div>
-              <div class="revenue-risk">
-                <span class="revenue-output-label">Risk of False Positive</span>
-                <div class="risk-meter"><div class="risk-fill" id="rev-risk-fill"></div></div>
-                <span id="rev-risk-pct">—</span>
-              </div>
-              <div class="revenue-decision">
-                <span class="revenue-output-label">Decision</span>
-                <span class="decision-badge" id="rev-decision">—</span>
-              </div>
-            </div>
-          </div>
-          <div class="module-diagram">
-            <div class="diagram-flow">
-              <span class="diagram-node">Traffic</span>
-              <span class="diagram-arrow">→</span>
-              <span class="diagram-node">Experiment</span>
-              <span class="diagram-arrow">→</span>
-              <span class="diagram-node">Statistical Engine</span>
-              <span class="diagram-arrow">→</span>
-              <span class="diagram-node">Revenue Projection</span>
-              <span class="diagram-arrow">→</span>
-              <span class="diagram-node diagram-accent">Rollout Strategy</span>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Module 2: Risk-Aware Product Optimization System -->
-      <div class="module-block" data-module="risk">
-        <button class="module-header" aria-expanded="false" aria-controls="module-risk">
-          <span class="module-badge">Risk-Aware Product Optimization System</span>
-          <span class="module-expand">+</span>
-        </button>
-        <div id="module-risk" class="module-body" hidden>
-          <div class="module-framing">
-            <h3>Balancing detection, friction, and revenue impact.</h3>
-            <p>Every optimization system exists under risk constraints. Aggressive thresholds reduce loss exposure but increase user friction. Conservative thresholds protect experience but increase operational risk.</p>
-            <p>This system models risk scoring, threshold tuning, and cost tradeoffs under simulated behavioral variability.</p>
-            <p class="module-impact">Designed for high-stakes environments where detection accuracy directly impacts revenue and trust.</p>
-            <ul class="module-bullets">
-              <li>Classification threshold optimization</li>
-              <li>Precision vs recall tradeoffs</li>
-              <li>Loss prevention modeling</li>
-              <li>Cost-of-friction analysis</li>
-              <li>Risk-adjusted decision logic</li>
+            <div class="recruiter-tags">Python · SQL · Pandas · Dashboards</div>
+          </article>
+          <article class="recruiter-role" data-relevance='{"product-ds":1,"growth-ds":2,"ml-engineer":2}' data-date="2025-04">
+            <div class="recruiter-role-head"><h3>Data for Good Hackathon</h3><span class="recruiter-org">J.P. Morgan Chase & Co.</span><span class="recruiter-date">Apr 2025</span></div>
+            <ul class="recruiter-bullets">
+              <li data-lens="growth-ds ml-engineer">Built geospatial analytics dashboard (React, Node.js, Mapbox) mapping underserved ZIP codes</li>
+              <li data-lens="product-ds ml-engineer">Designed Compass Connect, an AI-driven platform visualizing social-service impact across regions</li>
             </ul>
-            <div class="module-framing-panel">
-              <p><strong>Primary Objective:</strong> Minimize operational loss while preserving product experience.</p>
-              <p><strong>Optimization Constraint:</strong> Detection sensitivity must align with acceptable friction thresholds. This module simulates how those decisions affect real outcomes.</p>
-            </div>
-            <p class="module-tagline">Engineered for product environments operating under regulatory and financial constraints.</p>
-          </div>
-          <div class="risk-engine">
-            <div class="risk-controls">
-              <div class="risk-control">
-                <label>Sensitivity</label>
-                <input type="range" id="risk-sensitivity" min="0" max="100" value="70">
-                <span id="risk-sens-val">70%</span>
-              </div>
-              <div class="risk-control">
-                <label>Risk Tolerance</label>
-                <input type="range" id="risk-tolerance" min="0" max="100" value="30">
-                <span id="risk-tol-val">30%</span>
-              </div>
-            </div>
-            <div class="risk-panels">
-              <div class="risk-main">
-                <div class="risk-metric">
-                  <span class="risk-metric-label">Live Risk Probability</span>
-                  <span class="risk-metric-value" id="risk-prob">—</span>
-                </div>
-                <div class="risk-metric">
-                  <span class="risk-metric-label">Alert Trigger</span>
-                  <span class="risk-alert" id="risk-alert">INACTIVE</span>
-                </div>
-                <div class="risk-metric">
-                  <span class="risk-metric-label">Estimated Loss Avoided</span>
-                  <span class="risk-metric-value" id="risk-loss">$0</span>
-                </div>
-              </div>
-              <div class="risk-chart">
-                <span class="risk-chart-label">Precision vs Recall</span>
-                <div class="pr-curve" id="pr-curve">
-                  <svg viewBox="0 0 200 120" preserveAspectRatio="none">
-                    <path id="pr-path" d="" fill="none" stroke="var(--accent-pink)" stroke-width="2"/>
-                  </svg>
-                </div>
-              </div>
-            </div>
-            <div class="module-diagram risk-diagram">
-              <div class="diagram-flow diagram-compact">
-                <span class="diagram-node">Kafka</span><span class="diagram-arrow">→</span>
-                <span class="diagram-node">Spark</span><span class="diagram-arrow">→</span>
-                <span class="diagram-node">Feature Store</span><span class="diagram-arrow">→</span>
-                <span class="diagram-node">Scoring API</span><span class="diagram-arrow">→</span>
-                <span class="diagram-node diagram-accent">Monitor</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Module 3: Scalable Analytics Infrastructure Simulator -->
-      <div class="module-block" data-module="arch">
-        <button class="module-header" aria-expanded="false" aria-controls="module-arch">
-          <span class="module-badge">Scalable Analytics Infrastructure Simulator</span>
-          <span class="module-expand">+</span>
-        </button>
-        <div id="module-arch" class="module-body" hidden>
-          <div class="module-framing">
-            <h3>Aligning architecture with product maturity.</h3>
-            <p>Data products fail when infrastructure does not scale with growth.</p>
-            <p>This simulator dynamically reconfigures data architecture based on organizational scale — startup, growth-stage, or enterprise. It models tradeoffs across cost, latency, reliability, and operational complexity.</p>
-            <p class="module-impact">Designed to demonstrate how analytics infrastructure must evolve alongside product velocity.</p>
-            <ul class="module-bullets">
-              <li>Data warehouse design logic</li>
-              <li>Pipeline architecture tradeoffs</li>
-              <li>Monitoring & observability planning</li>
-              <li>Cost-performance optimization</li>
-              <li>Infrastructure scalability modeling</li>
+            <div class="recruiter-tags">React · Node.js · Mapbox · Geospatial</div>
+          </article>
+          <article class="recruiter-role" data-relevance='{"product-ds":3,"growth-ds":2,"ml-engineer":1}' data-date="2024-06">
+            <div class="recruiter-role-head"><h3>Climate Finance Strategy Intern</h3><span class="recruiter-org">Sustainable Solutions for Africa</span><span class="recruiter-date">Jun 2024 – Aug 2024</span></div>
+            <ul class="recruiter-bullets">
+              <li data-lens="product-ds">Led the design of Namibia's Climate Finance Strategy, aligning national policy with UN SDG targets</li>
+              <li data-lens="product-ds ml-engineer">Developed financial models in Excel and Python to optimize climate-funding allocation, increasing accuracy by 25%</li>
+              <li data-lens="growth-ds">Produced visual reports and presentations adopted by senior policymakers</li>
             </ul>
-            <div class="module-framing-panel">
-              <p><strong>Primary Objective:</strong> Support experimentation velocity without sacrificing reliability.</p>
-              <p><strong>Scaling Principle:</strong> Architecture must evolve with traffic, complexity, and deployment frequency. This system visualizes that evolution.</p>
-            </div>
-            <p class="module-tagline">Built to reflect production-aware analytics system design.</p>
-          </div>
-          <div class="arch-simulator">
-            <div class="arch-selector">
-              <button class="scale-btn active" data-scale="startup">Startup</button>
-              <button class="scale-btn" data-scale="growth">Growth</button>
-              <button class="scale-btn" data-scale="enterprise">Enterprise</button>
-            </div>
-            <div class="arch-content">
-              <div class="arch-diagram" id="arch-diagram">
-                <div class="arch-layer" data-layer="storage" data-tooltip="Data storage and persistence layer. Scales from single DB to distributed data lake."></div>
-                <div class="arch-layer" data-layer="processing" data-tooltip="ETL, transformation, and feature computation. Batch to streaming."></div>
-                <div class="arch-layer" data-layer="modeling" data-tooltip="Model training, validation, and inference. Offline to real-time."></div>
-                <div class="arch-layer" data-layer="deployment" data-tooltip="CI/CD, orchestration, and serving infrastructure."></div>
-                <div class="arch-layer" data-layer="monitoring" data-tooltip="Observability, alerting, and model monitoring."></div>
-              </div>
-              <div class="arch-metrics">
-                <div class="arch-metric">
-                  <span class="arch-metric-label">Latency</span>
-                  <span class="arch-metric-value" id="arch-latency">—</span>
-                </div>
-                <div class="arch-metric">
-                  <span class="arch-metric-label">Monthly Cost</span>
-                  <span class="arch-metric-value" id="arch-cost">—</span>
-                </div>
-                <div class="arch-metric">
-                  <span class="arch-metric-label">Reliability</span>
-                  <span class="arch-metric-value" id="arch-reliability">—</span>
-                </div>
-                <div class="arch-metric">
-                  <span class="arch-metric-label">Complexity</span>
-                  <span class="arch-metric-value" id="arch-complexity">—</span>
-                </div>
-              </div>
-            </div>
-          </div>
+            <div class="recruiter-tags">Python · Excel · Financial Modeling · Policy</div>
+          </article>
+          <article class="recruiter-role" data-relevance='{"product-ds":2,"growth-ds":2,"ml-engineer":3}' data-date="2023-05">
+            <div class="recruiter-role-head"><h3>Data Science Intern</h3><span class="recruiter-org">NMB Bank Plc</span><span class="recruiter-date">May 2023 – Jun 2023</span></div>
+            <ul class="recruiter-bullets">
+              <li data-lens="ml-engineer product-ds">Automated credit-risk analytics pipelines with Python and SQL, cutting report generation time by 20%</li>
+              <li data-lens="ml-engineer">Created predictive models to assess loan-default probability, informing SME lending strategy</li>
+              <li data-lens="growth-ds">Built Tableau dashboards used by management to track portfolio health</li>
+            </ul>
+            <div class="recruiter-tags">Python · SQL · Tableau · Predictive Modeling</div>
+          </article>
         </div>
-      </div>
-    </div>
-  </section>
+      </section>
 
-  <!-- Contact Terminal -->
-  <section id="contact" class="contact section">
-    <div class="container">
-      <h2 class="section-title">Let's Build Something That Matters.</h2>
-      <p class="contact-subtitle">Product. Systems. Impact.</p>
-      <div class="contact-buttons">
-        <a href="mailto:Karen_Marie1@icloud.com" class="contact-btn">Email</a>
-        <a href="https://linkedin.com/in/karen-marie-kasigila-443b73242" target="_blank" rel="noopener noreferrer" class="contact-btn">LinkedIn</a>
-        <a href="https://github.com/kasigila" target="_blank" rel="noopener noreferrer" class="contact-btn">GitHub</a>
-        <a href="Karen_Marie_Kasigila_Resume.pdf" class="contact-btn" download>Resume</a>
-      </div>
-    </div>
-  </section>
+      <section class="recruiter-section">
+        <h2 class="recruiter-h2">Key Metrics</h2>
+        <div class="recruiter-metrics">
+          <div class="recruiter-metric"><span class="recruiter-metric-val">23%</span><span class="recruiter-metric-label">Revenue Optimization</span></div>
+          <div class="recruiter-metric"><span class="recruiter-metric-val">71%</span><span class="recruiter-metric-label">Experiment Win Rate</span></div>
+          <div class="recruiter-metric"><span class="recruiter-metric-val">12</span><span class="recruiter-metric-label">Systems Built</span></div>
+          <div class="recruiter-metric"><span class="recruiter-metric-val">40%</span><span class="recruiter-metric-label">Reporting Automation Gain</span></div>
+        </div>
+      </section>
 
-  <!-- Footer -->
+      <section class="recruiter-section recruiter-contact">
+        <div class="recruiter-contact-buttons">
+          <a href="Karen_Marie_Kasigila_Resume.pdf" class="recruiter-btn recruiter-btn-primary" download>Download Resume</a>
+          <a href="https://linkedin.com/in/karen-marie-kasigila-443b73242" target="_blank" rel="noopener noreferrer" class="recruiter-btn">LinkedIn</a>
+          <a href="https://github.com/kasigila" target="_blank" rel="noopener noreferrer" class="recruiter-btn">GitHub</a>
+          <a href="mailto:Karen_Marie1@icloud.com" class="recruiter-btn">Email</a>
+        </div>
+      </section>
+    </div>
+  </main>
+
   <footer class="footer">
     <div class="container footer-inner">
       <span class="footer-left">Karen Marie Kasigila © 2026</span>
-      <span class="footer-right">KarenOS v1.0</span>
+      <span class="footer-right creative-only">KarenOS v1.0</span>
+      <span class="footer-right recruiter-only">Product Data Scientist</span>
     </div>
   </footer>
 
