@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Scalable Analytics Architecture Simulator | Karen Marie Kasigila</title>
+  <link rel="stylesheet" href="../style.css">
+  <style>
+    .case-study { max-width: 720px; margin: 0 auto; padding: 4rem 1.5rem; }
+    .case-study h1 { font-size: 1.75rem; margin-bottom: 0.5rem; }
+    .case-study .back-link { display: inline-block; margin-bottom: 2rem; color: var(--accent-pink); }
+    .summary-box { background: var(--card-bg); border: 1px solid rgba(255,255,255,0.06); border-radius: 12px; padding: 1.5rem; margin: 1.5rem 0; }
+    .summary-box h3 { font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-secondary); margin: 0 0 0.5rem; }
+    .summary-box p { margin: 0 0 0.75rem; font-size: 0.95rem; }
+    .case-study table { width: 100%; border-collapse: collapse; margin: 1rem 0; font-size: 0.9rem; }
+    .case-study th, .case-study td { padding: 0.6rem 0.75rem; text-align: left; border: 1px solid rgba(255,255,255,0.08); }
+    .case-study th { background: var(--card-bg); font-weight: 600; }
+  </style>
+</head>
+<body>
+  <div class="case-study">
+    <a href="../index.html#modules" class="back-link">&larr; Back to KarenOS</a>
+    <h1>Scalable Analytics Architecture Simulator</h1>
+    <p style="color: var(--text-secondary); margin-bottom: 2rem;">Case Study — Product Data Scientist Portfolio</p>
+
+    <section>
+      <h2>90-Second Summary</h2>
+      <div class="summary-box">
+        <h3>Problem</h3>
+        <p>Data products fail when infrastructure does not scale with growth. Startups, growth-stage, and enterprise companies need different architectures.</p>
+        <h3>Approach</h3>
+        <p>Built a simulator that dynamically reconfigures data architecture (storage, processing, modeling, deployment, monitoring) based on organizational scale. Outputs latency, monthly cost, reliability, and complexity.</p>
+        <h3>Output</h3>
+        <p>Three presets (Startup, Growth, Enterprise) with layered architecture diagram and key metrics. Demonstrates evolution from Postgres + cron to Kafka + K8s.</p>
+        <h3>Decision</h3>
+        <p>Choose architecture tier based on traffic volume, experiment velocity, and reliability requirements.</p>
+      </div>
+    </section>
+
+    <section>
+      <h2>Measurement Plan</h2>
+      <table>
+        <thead>
+          <tr><th>Time Horizon</th><th>Milestone</th><th>Success Criteria</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>0–30 days</td><td>Current state documented</td><td>Inventory of pipelines, tables, and SLAs; pain points identified</td></tr>
+          <tr><td>30–60 days</td><td>Target architecture designed</td><td>Tool choices justified; cost and latency projections</td></tr>
+          <tr><td>60–90 days</td><td>Migration roadmap</td><td>Phased rollout plan; success metrics per phase</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section>
+      <h2>Success Metrics &amp; Tripwires</h2>
+      <p><strong>Success:</strong> Pipeline latency within SLA; data freshness meets product needs; cost within budget; zero data loss incidents.</p>
+      <p><strong>Tripwire (anti-success):</strong> Repeated pipeline failures; model staleness; runaway cloud costs.</p>
+    </section>
+
+    <section>
+      <h2>Instrumentation / Event Taxonomy</h2>
+      <table>
+        <thead>
+          <tr><th>Event Name</th><th>Required Properties</th><th>Notes</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>pipeline_run_start</td><td>pipeline_id, run_id, timestamp</td><td>Orchestration trigger</td></tr>
+          <tr><td>pipeline_run_end</td><td>pipeline_id, run_id, status, duration_sec</td><td>Success/failure</td></tr>
+          <tr><td>data_freshness</td><td>table_name, last_updated, expected_freshness_hours</td><td>SLA monitoring</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section>
+      <h2>Data Model Layer</h2>
+      <p><strong>Staging:</strong> Raw tables from sources (APIs, DBs, events). <code>stg_*</code> with dedup and type casting.</p>
+      <p><strong>Marts:</strong> <code>fct_*</code> and <code>dim_*</code> for business logic. Incremental models where appropriate.</p>
+      <p><strong>Tests:</strong> dbt uniqueness, not_null, relationships, accepted_values. Freshness checks on critical sources.</p>
+      <p><strong>Documentation:</strong> dbt docs; lineage; column descriptions; README per model.</p>
+    </section>
+
+    <section style="margin-top: 2rem;">
+      <a href="https://github.com/kasigila/karenos/tree/main/arch-simulator" target="_blank" rel="noopener noreferrer" class="btn btn-primary">View Code</a>
+      <a href="../Karen_Marie_Kasigila_Resume.pdf" class="btn btn-ghost" download>Resume</a>
+    </section>
+  </div>
+</body>
+</html>
