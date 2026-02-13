@@ -138,6 +138,7 @@ body.recruiter-mode .nav-recruiter-btn .recruiter-label { display: inline; }
   left: 0;
   right: 0;
   display: flex;
+  flex-wrap: nowrap;
   align-items: center;
   justify-content: space-between;
   padding: 1rem 1.5rem;
@@ -162,12 +163,15 @@ body.recruiter-mode .nav-recruiter-btn .recruiter-label { display: inline; }
 .nav-links {
   display: flex;
   flex-direction: row;
-  flex-wrap: wrap;
-  gap: 2rem;
+  flex-wrap: nowrap;
+  gap: 1.5rem;
   list-style: none;
   margin: 0;
   padding: 0;
 }
+
+/* Ensure nav-links stays horizontal (creative-only uses display:block which would make it vertical) */
+.nav-links.creative-only { display: flex !important; flex-direction: row !important; }
 
 .nav-links a {
   font-size: 0.9rem;
@@ -1435,19 +1439,18 @@ body.recruiter-mode .arch-block:hover {
 @media (max-width: 900px) {
   .summary-grid { grid-template-columns: 1fr; }
   .metrics-grid { grid-template-columns: 1fr; }
-}
 
-@media (max-width: 768px) {
-  .nav-links { display: none; }
-  .nav-mobile-toggle { display: flex; }
-  .nav-recruiter-btn { display: inline-flex; }
+  /* Override creative-only so nav links are hidden by default on mobile/tablet */
+  .nav-links.creative-only { display: none !important; }
+  .nav-mobile-toggle.creative-only { display: flex !important; }
+  .nav-recruiter-btn { display: inline-flex !important; }
 
   .navbar {
     flex-wrap: wrap;
   }
 
-  .navbar.mobile-open .nav-links {
-    display: flex;
+  .navbar.mobile-open .nav-links.creative-only {
+    display: flex !important;
     order: 3;
     width: 100%;
     flex-direction: row;
