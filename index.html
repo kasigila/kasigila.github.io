@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>KarenOS v1.0 |Karen Marie Kasigila</title>
+  <title>KarenOS v1.0 | Karen Marie Kasigila</title>
   <meta name="description" content="Product-driven data scientist. Designing intelligent systems for measurable impact.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -29,6 +29,7 @@
       <li><a href="#experience">Experience</a></li>
       <li><a href="#systems">Systems</a></li>
       <li><a href="#skills">Skills</a></li>
+      <li><a href="#modules">Modules</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
     <button id="recruiter-toggle" class="nav-recruiter-btn" aria-pressed="false">
@@ -65,7 +66,7 @@
         <p class="hero-subtitle">Product-Driven Data Scientist</p>
         <p class="hero-typing" id="typing-line"></p>
         <div class="hero-buttons">
-          <a href="#metrics" class="btn btn-primary">View System Metrics</a>
+          <a href="#modules" class="btn btn-primary">View Modules</a>
           <button id="hero-recruiter-btn" class="btn btn-secondary">Recruiter Mode</button>
           <a href="Karen_Marie_Kasigila_Resume.pdf" class="btn btn-ghost" download>Download Resume</a>
         </div>
@@ -296,6 +297,252 @@
             <p class="skill-preview">AWS · GCP · Git · Docker</p>
             <div class="skill-detail" hidden>
               <p>AWS · GCP · Git · Docker · Jupyter · CI/CD · Firebase</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- KarenOS Modules -->
+  <section id="modules" class="modules section">
+    <div class="container">
+      <h2 class="section-title">KarenOS Modules</h2>
+      <p class="modules-intro">Designed for high-leverage product environments.</p>
+
+      <!-- Module 1: Experimentation & Revenue Decision Engine -->
+      <div class="module-block" data-module="revenue">
+        <button class="module-header" aria-expanded="false" aria-controls="module-revenue">
+          <span class="module-badge">Experimentation & Revenue Decision Engine</span>
+          <span class="module-expand">+</span>
+        </button>
+        <div id="module-revenue" class="module-body" hidden>
+          <div class="module-framing">
+            <h3>From hypothesis to rollout — quantified.</h3>
+            <p>Modern product teams don't fail because of bad ideas. They fail because of poor experiment design and premature rollout decisions.</p>
+            <p>This system simulates controlled experimentation under realistic traffic, variance, and risk conditions. It models revenue impact, statistical confidence, and rollout thresholds before product deployment.</p>
+            <p class="module-impact">Designed to reduce false positives, prevent revenue leakage, and improve launch discipline.</p>
+            <ul class="module-bullets">
+              <li>A/B test design under traffic constraints</li>
+              <li>Confidence interval simulation</li>
+              <li>Revenue lift modeling</li>
+              <li>Risk-adjusted rollout decisions</li>
+              <li>KPI sensitivity analysis</li>
+            </ul>
+            <div class="module-framing-panel">
+              <p><strong>Primary Objective:</strong> Increase conversion while controlling false-positive risk.</p>
+              <p><strong>Decision Framework:</strong> Does the lift exceed statistical noise? Is the projected revenue impact meaningful? Is the rollout risk acceptable? This engine models those tradeoffs dynamically.</p>
+            </div>
+            <p class="module-tagline">Built to mirror how high-leverage product teams evaluate launches.</p>
+          </div>
+          <div class="revenue-engine">
+            <div class="revenue-left">
+              <div class="revenue-control">
+                <label>Traffic Volume (DAU)</label>
+                <input type="range" id="rev-traffic" min="10" max="100" value="50">
+                <span class="revenue-val" id="rev-traffic-val">50K</span>
+              </div>
+              <div class="revenue-control">
+                <label>Baseline Conversion %</label>
+                <input type="number" id="rev-conv" min="0.5" max="15" step="0.1" value="3">
+              </div>
+              <div class="revenue-control">
+                <label>Variant Uplift %</label>
+                <input type="range" id="rev-uplift" min="0" max="50" value="12">
+                <span class="revenue-val" id="rev-uplift-val">12%</span>
+              </div>
+              <div class="revenue-control">
+                <label>Experiment Duration (days)</label>
+                <select id="rev-duration">
+                  <option value="7">7</option>
+                  <option value="14" selected>14</option>
+                  <option value="21">21</option>
+                  <option value="28">28</option>
+                </select>
+              </div>
+              <div class="revenue-control">
+                <label>Segment</label>
+                <select id="rev-segment">
+                  <option value="all">All Users</option>
+                  <option value="new">New Users</option>
+                  <option value="power">Power Users</option>
+                  <option value="churn">Churn Risk</option>
+                </select>
+              </div>
+            </div>
+            <div class="revenue-right">
+              <div class="revenue-output">
+                <span class="revenue-output-label">Expected Revenue Lift</span>
+                <span class="revenue-output-value" id="rev-impact">$0</span>
+              </div>
+              <div class="revenue-ci">
+                <span class="revenue-output-label">Confidence Interval</span>
+                <div class="ci-band" id="rev-ci-band"></div>
+                <span class="ci-range" id="rev-ci-range">—</span>
+              </div>
+              <div class="revenue-stat">
+                <span class="revenue-output-label">Statistical Significance</span>
+                <span class="revenue-output-value" id="rev-significance">—</span>
+              </div>
+              <div class="revenue-risk">
+                <span class="revenue-output-label">Risk of False Positive</span>
+                <div class="risk-meter"><div class="risk-fill" id="rev-risk-fill"></div></div>
+                <span id="rev-risk-pct">—</span>
+              </div>
+              <div class="revenue-decision">
+                <span class="revenue-output-label">Decision</span>
+                <span class="decision-badge" id="rev-decision">—</span>
+              </div>
+            </div>
+          </div>
+          <div class="module-diagram">
+            <div class="diagram-flow">
+              <span class="diagram-node">Traffic</span>
+              <span class="diagram-arrow">→</span>
+              <span class="diagram-node">Experiment</span>
+              <span class="diagram-arrow">→</span>
+              <span class="diagram-node">Statistical Engine</span>
+              <span class="diagram-arrow">→</span>
+              <span class="diagram-node">Revenue Projection</span>
+              <span class="diagram-arrow">→</span>
+              <span class="diagram-node diagram-accent">Rollout Strategy</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Module 2: Risk-Aware Product Optimization System -->
+      <div class="module-block" data-module="risk">
+        <button class="module-header" aria-expanded="false" aria-controls="module-risk">
+          <span class="module-badge">Risk-Aware Product Optimization System</span>
+          <span class="module-expand">+</span>
+        </button>
+        <div id="module-risk" class="module-body" hidden>
+          <div class="module-framing">
+            <h3>Balancing detection, friction, and revenue impact.</h3>
+            <p>Every optimization system exists under risk constraints. Aggressive thresholds reduce loss exposure but increase user friction. Conservative thresholds protect experience but increase operational risk.</p>
+            <p>This system models risk scoring, threshold tuning, and cost tradeoffs under simulated behavioral variability.</p>
+            <p class="module-impact">Designed for high-stakes environments where detection accuracy directly impacts revenue and trust.</p>
+            <ul class="module-bullets">
+              <li>Classification threshold optimization</li>
+              <li>Precision vs recall tradeoffs</li>
+              <li>Loss prevention modeling</li>
+              <li>Cost-of-friction analysis</li>
+              <li>Risk-adjusted decision logic</li>
+            </ul>
+            <div class="module-framing-panel">
+              <p><strong>Primary Objective:</strong> Minimize operational loss while preserving product experience.</p>
+              <p><strong>Optimization Constraint:</strong> Detection sensitivity must align with acceptable friction thresholds. This module simulates how those decisions affect real outcomes.</p>
+            </div>
+            <p class="module-tagline">Engineered for product environments operating under regulatory and financial constraints.</p>
+          </div>
+          <div class="risk-engine">
+            <div class="risk-controls">
+              <div class="risk-control">
+                <label>Sensitivity</label>
+                <input type="range" id="risk-sensitivity" min="0" max="100" value="70">
+                <span id="risk-sens-val">70%</span>
+              </div>
+              <div class="risk-control">
+                <label>Risk Tolerance</label>
+                <input type="range" id="risk-tolerance" min="0" max="100" value="30">
+                <span id="risk-tol-val">30%</span>
+              </div>
+            </div>
+            <div class="risk-panels">
+              <div class="risk-main">
+                <div class="risk-metric">
+                  <span class="risk-metric-label">Live Risk Probability</span>
+                  <span class="risk-metric-value" id="risk-prob">—</span>
+                </div>
+                <div class="risk-metric">
+                  <span class="risk-metric-label">Alert Trigger</span>
+                  <span class="risk-alert" id="risk-alert">INACTIVE</span>
+                </div>
+                <div class="risk-metric">
+                  <span class="risk-metric-label">Estimated Loss Avoided</span>
+                  <span class="risk-metric-value" id="risk-loss">$0</span>
+                </div>
+              </div>
+              <div class="risk-chart">
+                <span class="risk-chart-label">Precision vs Recall</span>
+                <div class="pr-curve" id="pr-curve">
+                  <svg viewBox="0 0 200 120" preserveAspectRatio="none">
+                    <path id="pr-path" d="" fill="none" stroke="var(--accent-pink)" stroke-width="2"/>
+                  </svg>
+                </div>
+              </div>
+            </div>
+            <div class="module-diagram risk-diagram">
+              <div class="diagram-flow diagram-compact">
+                <span class="diagram-node">Kafka</span><span class="diagram-arrow">→</span>
+                <span class="diagram-node">Spark</span><span class="diagram-arrow">→</span>
+                <span class="diagram-node">Feature Store</span><span class="diagram-arrow">→</span>
+                <span class="diagram-node">Scoring API</span><span class="diagram-arrow">→</span>
+                <span class="diagram-node diagram-accent">Monitor</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Module 3: Scalable Analytics Infrastructure Simulator -->
+      <div class="module-block" data-module="arch">
+        <button class="module-header" aria-expanded="false" aria-controls="module-arch">
+          <span class="module-badge">Scalable Analytics Infrastructure Simulator</span>
+          <span class="module-expand">+</span>
+        </button>
+        <div id="module-arch" class="module-body" hidden>
+          <div class="module-framing">
+            <h3>Aligning architecture with product maturity.</h3>
+            <p>Data products fail when infrastructure does not scale with growth.</p>
+            <p>This simulator dynamically reconfigures data architecture based on organizational scale — startup, growth-stage, or enterprise. It models tradeoffs across cost, latency, reliability, and operational complexity.</p>
+            <p class="module-impact">Designed to demonstrate how analytics infrastructure must evolve alongside product velocity.</p>
+            <ul class="module-bullets">
+              <li>Data warehouse design logic</li>
+              <li>Pipeline architecture tradeoffs</li>
+              <li>Monitoring & observability planning</li>
+              <li>Cost-performance optimization</li>
+              <li>Infrastructure scalability modeling</li>
+            </ul>
+            <div class="module-framing-panel">
+              <p><strong>Primary Objective:</strong> Support experimentation velocity without sacrificing reliability.</p>
+              <p><strong>Scaling Principle:</strong> Architecture must evolve with traffic, complexity, and deployment frequency. This system visualizes that evolution.</p>
+            </div>
+            <p class="module-tagline">Built to reflect production-aware analytics system design.</p>
+          </div>
+          <div class="arch-simulator">
+            <div class="arch-selector">
+              <button class="scale-btn active" data-scale="startup">Startup</button>
+              <button class="scale-btn" data-scale="growth">Growth</button>
+              <button class="scale-btn" data-scale="enterprise">Enterprise</button>
+            </div>
+            <div class="arch-content">
+              <div class="arch-diagram" id="arch-diagram">
+                <div class="arch-layer" data-layer="storage" data-tooltip="Data storage and persistence layer. Scales from single DB to distributed data lake."></div>
+                <div class="arch-layer" data-layer="processing" data-tooltip="ETL, transformation, and feature computation. Batch to streaming."></div>
+                <div class="arch-layer" data-layer="modeling" data-tooltip="Model training, validation, and inference. Offline to real-time."></div>
+                <div class="arch-layer" data-layer="deployment" data-tooltip="CI/CD, orchestration, and serving infrastructure."></div>
+                <div class="arch-layer" data-layer="monitoring" data-tooltip="Observability, alerting, and model monitoring."></div>
+              </div>
+              <div class="arch-metrics">
+                <div class="arch-metric">
+                  <span class="arch-metric-label">Latency</span>
+                  <span class="arch-metric-value" id="arch-latency">—</span>
+                </div>
+                <div class="arch-metric">
+                  <span class="arch-metric-label">Monthly Cost</span>
+                  <span class="arch-metric-value" id="arch-cost">—</span>
+                </div>
+                <div class="arch-metric">
+                  <span class="arch-metric-label">Reliability</span>
+                  <span class="arch-metric-value" id="arch-reliability">—</span>
+                </div>
+                <div class="arch-metric">
+                  <span class="arch-metric-label">Complexity</span>
+                  <span class="arch-metric-value" id="arch-complexity">—</span>
+                </div>
+              </div>
             </div>
           </div>
         </div>
