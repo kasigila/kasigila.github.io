@@ -5,12 +5,34 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Karen Marie Kasigila | Product Data Scientist</title>
   <meta name="description" content="Product-driven data scientist. Designing intelligent systems for measurable impact.">
+  <!-- Open Graph -->
+  <meta property="og:title" content="Karen Marie Kasigila | Product Data Scientist">
+  <meta property="og:description" content="Product-driven data scientist. Designing intelligent systems for measurable impact.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://kasigila.github.io/">
+  <meta property="og:image" content="https://kasigila.github.io/og-image.png">
+  <!-- JSON-LD Person -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Karen Marie Kasigila",
+    "jobTitle": "Product Data Scientist",
+    "description": "Product-driven data scientist. Designing intelligent systems for measurable impact.",
+    "sameAs": [
+      "https://www.linkedin.com/in/karen-marie-kasigila-443b73242",
+      "https://github.com/kasigila"
+    ]
+  }
+  </script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
+  <a href="#hero" class="skip-link">Skip to content</a>
   <!-- Scroll Progress (Creative only) -->
   <div id="scroll-progress" class="scroll-progress" aria-hidden="true"></div>
   <div id="cursor-glow" class="cursor-glow" aria-hidden="true"></div>
@@ -33,6 +55,7 @@
     </button>
     <button class="nav-mobile-toggle creative-only" aria-label="Open menu" aria-expanded="false"><span></span><span></span><span></span></button>
   </nav>
+  <div class="nav-sidebar-overlay creative-only" id="nav-sidebar-overlay" aria-hidden="true"></div>
 
   <!-- ==================== CREATIVE VIEW (Default) ==================== -->
   <main id="creative-view" class="view-active">
@@ -65,24 +88,69 @@
     <section id="metrics" class="metrics section">
       <div class="container">
         <h2 class="section-title">Live Metrics</h2>
-        <div class="metrics-grid">
-          <div class="metric-card reveal"><span class="metric-label">Revenue Impact Simulated</span><span class="metric-value" data-target="23" data-suffix="%">0</span></div>
-          <div class="metric-card reveal"><span class="metric-label">Experiment Win Rate</span><span class="metric-value" data-target="71" data-suffix="%">0</span></div>
-          <div class="metric-card reveal"><span class="metric-label">Systems Built</span><span class="metric-value" data-target="12" data-suffix="">0</span></div>
+        <div class="metrics-toggle">
+          <button type="button" class="metrics-toggle-btn active" data-metrics-mode="portfolio" aria-pressed="true">Portfolio simulations</button>
+          <button type="button" class="metrics-toggle-btn" data-metrics-mode="real-world" aria-pressed="false">Real-world impact</button>
+        </div>
+        <div class="metrics-grid metrics-portfolio">
+          <div class="metric-card reveal" data-metric-id="revenue-impact" data-metrics-mode="portfolio">
+            <div class="metric-card-header">
+              <span class="metric-label">Revenue Impact Simulated <span class="metric-sublabel">Portfolio simulation (assumptions documented)</span></span>
+              <button type="button" class="evidence-btn" aria-label="View evidence for Revenue Impact Simulated" title="View evidence"><i class="fa-solid fa-magnifying-glass"></i></button>
+            </div>
+            <span class="metric-value" data-target="23" data-suffix="%">0</span>
+          </div>
+          <div class="metric-card reveal" data-metric-id="experiment-templates" data-metrics-mode="portfolio">
+            <div class="metric-card-header">
+              <span class="metric-label">Experiment Templates Shipped</span>
+              <button type="button" class="evidence-btn" aria-label="View evidence for Experiment Templates Shipped" title="View evidence"><i class="fa-solid fa-magnifying-glass"></i></button>
+            </div>
+            <span class="metric-value" data-target="12" data-suffix="">0</span>
+          </div>
+          <div class="metric-card reveal" data-metric-id="systems-built" data-metrics-mode="portfolio">
+            <div class="metric-card-header">
+              <span class="metric-label">Systems Built</span>
+              <button type="button" class="evidence-btn" aria-label="View evidence for Systems Built" title="View evidence"><i class="fa-solid fa-magnifying-glass"></i></button>
+            </div>
+            <span class="metric-value" data-target="12" data-suffix="">0</span>
+          </div>
+        </div>
+        <div class="metrics-grid metrics-real-world" hidden>
+          <div class="metric-card reveal" data-metric-id="reporting-automation" data-metrics-mode="real-world">
+            <div class="metric-card-header">
+              <span class="metric-label">Reporting Automation Gain</span>
+              <button type="button" class="evidence-btn" aria-label="View evidence" title="View evidence"><i class="fa-solid fa-magnifying-glass"></i></button>
+            </div>
+            <span class="metric-value" data-target="40" data-suffix="%">0</span>
+          </div>
+          <div class="metric-card reveal" data-metric-id="dashboards-delivered" data-metrics-mode="real-world">
+            <div class="metric-card-header">
+              <span class="metric-label">Stakeholder Dashboards Delivered</span>
+              <button type="button" class="evidence-btn" aria-label="View evidence" title="View evidence"><i class="fa-solid fa-magnifying-glass"></i></button>
+            </div>
+            <span class="metric-value" data-target="8" data-suffix="">0</span>
+          </div>
+          <div class="metric-card reveal" data-metric-id="accuracy-improvement" data-metrics-mode="real-world">
+            <div class="metric-card-header">
+              <span class="metric-label">Monitoring Accuracy Improvement</span>
+              <button type="button" class="evidence-btn" aria-label="View evidence" title="View evidence"><i class="fa-solid fa-magnifying-glass"></i></button>
+            </div>
+            <span class="metric-value" data-target="25" data-suffix="%">0</span>
+          </div>
         </div>
         <div class="slider-panel reveal">
           <h3>Simulate Product Optimization</h3>
           <div class="slider-control">
-            <label><span class="slider-label">Conversion Rate</span><span class="slider-value" id="conv-value">42%</span></label>
-            <input type="range" id="conv-slider" min="20" max="80" value="42">
+            <label for="conv-slider"><span class="slider-label">Conversion Rate</span><span class="slider-value" id="conv-value">42%</span></label>
+            <input type="range" id="conv-slider" min="20" max="80" value="42" aria-valuemin="20" aria-valuemax="80" aria-valuenow="42" aria-label="Conversion rate percentage">
           </div>
           <div class="slider-control">
-            <label><span class="slider-label">Revenue</span><span class="slider-value" id="revenue-value">$2.4M</span></label>
-            <input type="range" id="revenue-slider" min="1" max="10" value="2.4" step="0.1">
+            <label for="revenue-slider"><span class="slider-label">Revenue</span><span class="slider-value" id="revenue-value">$2.4M</span></label>
+            <input type="range" id="revenue-slider" min="1" max="10" value="2.4" step="0.1" aria-valuemin="1" aria-valuemax="10" aria-label="Revenue in millions">
           </div>
           <div class="slider-control">
-            <label><span class="slider-label">Efficiency</span><span class="slider-value" id="efficiency-value">87%</span></label>
-            <input type="range" id="efficiency-slider" min="50" max="99" value="87">
+            <label for="efficiency-slider"><span class="slider-label">Efficiency</span><span class="slider-value" id="efficiency-value">87%</span></label>
+            <input type="range" id="efficiency-slider" min="50" max="99" value="87" aria-valuemin="50" aria-valuemax="99" aria-label="Efficiency percentage">
           </div>
         </div>
       </div>
@@ -186,11 +254,11 @@
       <div class="container">
         <h2 class="section-title">Skill Intelligence Map</h2>
         <div class="skills-grid">
-          <div class="skill-card" data-expandable><div class="skill-card-inner"><h3>Machine Learning</h3><p class="skill-preview">Python · scikit-learn · TensorFlow · XGBoost</p><div class="skill-detail" hidden><p>Python · scikit-learn · TensorFlow · PyTorch · XGBoost · Feature Engineering · Predictive Modeling</p></div></div></div>
-          <div class="skill-card" data-expandable><div class="skill-card-inner"><h3>Product Analytics</h3><p class="skill-preview">SQL · Looker · Amplitude · Funnels</p><div class="skill-detail" hidden><p>SQL · Looker · Amplitude · Mixpanel · Cohort Analysis · Funnels · Data Visualization</p></div></div></div>
-          <div class="skill-card" data-expandable><div class="skill-card-inner"><h3>Data Engineering</h3><p class="skill-preview">BigQuery · Spark · Airflow · ETL</p><div class="skill-detail" hidden><p>BigQuery · Snowflake · Spark · Airflow · dbt · ETL Pipelines · Data Pipelines</p></div></div></div>
-          <div class="skill-card" data-expandable><div class="skill-card-inner"><h3>Experimentation</h3><p class="skill-preview">A/B Testing · Statistical Significance</p><div class="skill-detail" hidden><p>A/B Testing · Statistical Significance · Power Analysis · Causal Inference · Hypothesis Testing</p></div></div></div>
-          <div class="skill-card" data-expandable><div class="skill-card-inner"><h3>Cloud & Tools</h3><p class="skill-preview">AWS · GCP · Git · Docker</p><div class="skill-detail" hidden><p>AWS · GCP · Git · Docker · Jupyter · CI/CD · Firebase</p></div></div></div>
+          <div class="skill-card" data-expandable data-skill-id="ml"><div class="skill-card-inner"><span class="skill-badge skill-primary">Primary (proven)</span><h3>Machine Learning</h3><p class="skill-preview">Python · scikit-learn · TensorFlow · XGBoost</p><div class="skill-detail" hidden><p>Python · scikit-learn · TensorFlow · PyTorch · XGBoost · Feature Engineering · Predictive Modeling</p><button type="button" class="skill-evidence-btn" data-skill-id="ml"><i class="fa-solid fa-magnifying-glass"></i> Evidence</button></div></div></div>
+          <div class="skill-card" data-expandable data-skill-id="product-analytics"><div class="skill-card-inner"><span class="skill-badge skill-primary">Primary (proven)</span><h3>Product Analytics</h3><p class="skill-preview">SQL · Looker · Amplitude · Funnels</p><div class="skill-detail" hidden><p>SQL · Looker · Amplitude · Mixpanel · Cohort Analysis · Funnels · Data Visualization</p><button type="button" class="skill-evidence-btn" data-skill-id="product-analytics"><i class="fa-solid fa-magnifying-glass"></i> Evidence</button></div></div></div>
+          <div class="skill-card" data-expandable data-skill-id="data-eng"><div class="skill-card-inner"><span class="skill-badge skill-familiar">Familiar</span><h3>Data Engineering</h3><p class="skill-preview">BigQuery · Spark · Airflow · ETL</p><div class="skill-detail" hidden><p>BigQuery · Snowflake · Spark · Airflow · dbt · ETL Pipelines · Data Pipelines</p><button type="button" class="skill-evidence-btn" data-skill-id="data-eng"><i class="fa-solid fa-magnifying-glass"></i> Evidence</button></div></div></div>
+          <div class="skill-card" data-expandable data-skill-id="experimentation"><div class="skill-card-inner"><span class="skill-badge skill-primary">Primary (proven)</span><h3>Experimentation</h3><p class="skill-preview">A/B Testing · Statistical Significance</p><div class="skill-detail" hidden><p>A/B Testing · Statistical Significance · Power Analysis · Causal Inference · Hypothesis Testing</p><button type="button" class="skill-evidence-btn" data-skill-id="experimentation"><i class="fa-solid fa-magnifying-glass"></i> Evidence</button></div></div></div>
+          <div class="skill-card" data-expandable data-skill-id="cloud"><div class="skill-card-inner"><span class="skill-badge skill-familiar">Familiar</span><h3>Cloud & Tools</h3><p class="skill-preview">AWS · GCP · Git · Docker</p><div class="skill-detail" hidden><p>AWS · GCP · Git · Docker · Jupyter · CI/CD · Firebase</p><button type="button" class="skill-evidence-btn" data-skill-id="cloud"><i class="fa-solid fa-magnifying-glass"></i> Evidence</button></div></div></div>
         </div>
       </div>
     </section>
@@ -222,10 +290,10 @@
             </div>
             <div class="revenue-engine">
               <div class="revenue-left">
-                <div class="revenue-control"><label>Traffic Volume (DAU)</label><input type="range" id="rev-traffic" min="10" max="100" value="50"><span class="revenue-val" id="rev-traffic-val">50K</span></div>
-                <div class="revenue-control"><label>Baseline Conversion %</label><input type="number" id="rev-conv" min="0.5" max="15" step="0.1" value="3"></div>
-                <div class="revenue-control"><label>Variant Uplift %</label><input type="range" id="rev-uplift" min="0" max="50" value="12"><span class="revenue-val" id="rev-uplift-val">12%</span></div>
-                <div class="revenue-control"><label>ARPU ($)</label><input type="number" id="rev-arpu" min="10" max="500" value="100"></div>
+                <div class="revenue-control"><label for="rev-traffic">Traffic Volume (DAU)</label><input type="range" id="rev-traffic" min="10" max="100" value="50" aria-label="Traffic volume in thousands"><span class="revenue-val" id="rev-traffic-val">50K</span></div>
+                <div class="revenue-control"><label for="rev-conv">Baseline Conversion %</label><input type="number" id="rev-conv" min="0.5" max="15" step="0.1" value="3" aria-label="Baseline conversion percentage"></div>
+                <div class="revenue-control"><label for="rev-uplift">Variant Uplift %</label><input type="range" id="rev-uplift" min="0" max="50" value="12" aria-label="Variant uplift percentage"><span class="revenue-val" id="rev-uplift-val">12%</span></div>
+                <div class="revenue-control"><label for="rev-arpu">ARPU ($)</label><input type="number" id="rev-arpu" min="10" max="500" value="100" aria-label="Average revenue per user in dollars"></div>
                 <div class="revenue-control"><label>Experiment Duration (days)</label><select id="rev-duration"><option value="7">7</option><option value="14" selected>14</option><option value="21">21</option><option value="28">28</option></select></div>
                 <div class="revenue-control"><label>Segment</label><select id="rev-segment"><option value="all">All Users</option><option value="new">New Users</option><option value="power">Power Users</option><option value="churn">Churn Risk</option></select></div>
               </div>
@@ -238,6 +306,10 @@
               </div>
             </div>
             <div class="module-diagram"><div class="diagram-flow"><span class="diagram-node">Traffic</span><span class="diagram-arrow">→</span><span class="diagram-node">Experiment</span><span class="diagram-arrow">→</span><span class="diagram-node">Statistical Engine</span><span class="diagram-arrow">→</span><span class="diagram-node">Revenue Projection</span><span class="diagram-arrow">→</span><span class="diagram-node diagram-accent">Rollout Strategy</span></div></div>
+            <div class="module-actions">
+              <a href="case-studies/revenue-experimentation-engine.html" class="module-link-btn">Case Study</a>
+              <a href="https://github.com/kasigila/karenos/tree/main/revenue-engine" target="_blank" rel="noopener noreferrer" class="module-link-btn">View Code</a>
+            </div>
           </div>
         </div>
 
@@ -256,8 +328,8 @@
             </div>
             <div class="risk-engine">
               <div class="risk-controls">
-                <div class="risk-control"><label>Sensitivity</label><input type="range" id="risk-sensitivity" min="0" max="100" value="70"><span id="risk-sens-val">70%</span></div>
-                <div class="risk-control"><label>Risk Tolerance</label><input type="range" id="risk-tolerance" min="0" max="100" value="30"><span id="risk-tol-val">30%</span></div>
+                <div class="risk-control"><label for="risk-sensitivity">Sensitivity</label><input type="range" id="risk-sensitivity" min="0" max="100" value="70" aria-label="Sensitivity percentage"><span id="risk-sens-val">70%</span></div>
+                <div class="risk-control"><label for="risk-tolerance">Risk Tolerance</label><input type="range" id="risk-tolerance" min="0" max="100" value="30" aria-label="Risk tolerance percentage"><span id="risk-tol-val">30%</span></div>
               </div>
               <div class="risk-panels">
                 <div class="risk-main">
@@ -268,6 +340,10 @@
                 <div class="risk-chart"><span class="risk-chart-label">Precision vs Recall</span><div class="pr-curve"><svg viewBox="0 0 200 120" preserveAspectRatio="none"><path id="pr-path" d="" fill="none" stroke="var(--accent-pink)" stroke-width="2"/></svg></div></div>
               </div>
               <div class="module-diagram risk-diagram"><div class="diagram-flow diagram-compact"><span class="diagram-node">Kafka</span><span class="diagram-arrow">→</span><span class="diagram-node">Spark</span><span class="diagram-arrow">→</span><span class="diagram-node">Feature Store</span><span class="diagram-arrow">→</span><span class="diagram-node">Scoring API</span><span class="diagram-arrow">→</span><span class="diagram-node diagram-accent">Monitor</span></div></div>
+            </div>
+            <div class="module-actions">
+              <a href="case-studies/risk-aware-optimization.html" class="module-link-btn">Case Study</a>
+              <a href="https://github.com/kasigila/karenos/tree/main/risk-engine" target="_blank" rel="noopener noreferrer" class="module-link-btn">View Code</a>
             </div>
           </div>
         </div>
@@ -302,6 +378,10 @@
                 </div>
               </div>
             </div>
+            <div class="module-actions">
+              <a href="case-studies/scalable-analytics-architecture.html" class="module-link-btn">Case Study</a>
+              <a href="https://github.com/kasigila/karenos/tree/main/arch-simulator" target="_blank" rel="noopener noreferrer" class="module-link-btn">View Code</a>
+            </div>
           </div>
         </div>
       </div>
@@ -313,7 +393,7 @@
         <p class="contact-subtitle">Product. Systems. Impact.</p>
         <div class="contact-buttons">
           <a href="mailto:Karen_Marie1@icloud.com" class="contact-btn">Email</a>
-          <a href="https://linkedin.com/in/karen-marie-kasigila-443b73242" target="_blank" rel="noopener noreferrer" class="contact-btn">LinkedIn</a>
+          <a href="https://www.linkedin.com/in/karen-marie-kasigila-443b73242" target="_blank" rel="noopener noreferrer" class="contact-btn">LinkedIn</a>
           <a href="https://github.com/kasigila" target="_blank" rel="noopener noreferrer" class="contact-btn">GitHub</a>
           <a href="Karen_Marie_Kasigila_Resume.pdf" class="contact-btn" download>Resume</a>
         </div>
@@ -343,7 +423,8 @@
         <div class="recruiter-roles">
           <span>Product Data Scientist</span>
           <span>Growth Data Scientist</span>
-          <span>ML Product Analyst</span>
+          <span>Senior Product Analyst</span>
+          <span>Analytics Engineer</span>
         </div>
       </section>
 
@@ -353,8 +434,12 @@
       </section>
 
       <section class="recruiter-section">
-        <h2 class="recruiter-h2">Work Authorization</h2>
-        <p class="recruiter-auth">Canadian Study Permit → PGWP Eligible 2027</p>
+        <h2 class="recruiter-h2">Work Authorization &amp; Location</h2>
+        <p class="recruiter-auth">Canadian Study Permit → PGWP Eligible 2027. Location: Open to Canada/US (visa unspecified).</p>
+      </section>
+
+      <section class="recruiter-section recruiter-copy-row">
+        <button type="button" class="recruiter-copy-btn" id="recruiter-copy-btn"><i class="fa-solid fa-copy"></i> Copy resume text</button>
       </section>
 
       <section class="recruiter-section">
@@ -362,47 +447,48 @@
         <p class="recruiter-lens-desc">Filter experience by role fit:</p>
         <div class="role-lens-buttons">
           <button class="role-lens-btn active" data-lens="all">All</button>
-          <button class="role-lens-btn" data-lens="product-ds">Product DS</button>
-          <button class="role-lens-btn" data-lens="growth-ds">Growth DS</button>
-          <button class="role-lens-btn" data-lens="ml-engineer">ML Engineer</button>
+          <button class="role-lens-btn" data-lens="product-ds">Product Data Scientist</button>
+          <button class="role-lens-btn" data-lens="growth-ds">Growth Data Scientist</button>
+          <button class="role-lens-btn" data-lens="product-analyst">Senior Product Analyst</button>
+          <button class="role-lens-btn" data-lens="analytics-engineer">Analytics Engineer</button>
         </div>
       </section>
 
       <section class="recruiter-section">
         <h2 class="recruiter-h2">Impact Experience</h2>
         <div id="recruiter-experience" class="recruiter-experience">
-          <article class="recruiter-role" data-relevance='{"product-ds":2,"growth-ds":2,"ml-engineer":1}' data-date="2025-06">
+          <article class="recruiter-role" data-relevance='{"product-ds":2,"growth-ds":2,"product-analyst":3,"analytics-engineer":1}' data-date="2025-06">
             <div class="recruiter-role-head"><h3>Data Science Intern</h3><span class="recruiter-org">Ifakara Health Institute</span><span class="recruiter-date">Jun 2025 – Aug 2025</span></div>
             <ul class="recruiter-bullets">
-              <li data-lens="product-ds growth-ds">Analyzed national malaria and community-health data using Python, SQL, and Pandas to identify high-risk zones</li>
-              <li data-lens="growth-ds">Built data dashboards that improved monitoring and reporting accuracy by 25%</li>
-              <li data-lens="product-ds">Presented statistical findings to research and policy teams to support data-driven decision-making</li>
+              <li data-lens="product-ds product-analyst">Analyzed national malaria and community-health data using Python, SQL, and Pandas to identify high-risk zones</li>
+              <li data-lens="growth-ds product-analyst">Built data dashboards that improved monitoring and reporting accuracy by 25%</li>
+              <li data-lens="product-ds product-analyst">Presented statistical findings to research and policy teams to support data-driven decision-making</li>
             </ul>
             <div class="recruiter-tags">Python · SQL · Pandas · Dashboards</div>
           </article>
-          <article class="recruiter-role" data-relevance='{"product-ds":1,"growth-ds":2,"ml-engineer":2}' data-date="2025-04">
+          <article class="recruiter-role" data-relevance='{"product-ds":2,"growth-ds":2,"product-analyst":3,"analytics-engineer":2}' data-date="2025-04">
             <div class="recruiter-role-head"><h3>Data for Good Hackathon</h3><span class="recruiter-org">J.P. Morgan Chase & Co.</span><span class="recruiter-date">Apr 2025</span></div>
             <ul class="recruiter-bullets">
-              <li data-lens="growth-ds ml-engineer">Built geospatial analytics dashboard (React, Node.js, Mapbox) mapping underserved ZIP codes</li>
-              <li data-lens="product-ds ml-engineer">Designed Compass Connect, an AI-driven platform visualizing social-service impact across regions</li>
+              <li data-lens="growth-ds product-analyst analytics-engineer">Built geospatial analytics dashboard (React, Node.js, Mapbox) mapping underserved ZIP codes</li>
+              <li data-lens="product-ds analytics-engineer">Designed Compass Connect, an AI-driven platform visualizing social-service impact across regions</li>
             </ul>
             <div class="recruiter-tags">React · Node.js · Mapbox · Geospatial</div>
           </article>
-          <article class="recruiter-role" data-relevance='{"product-ds":3,"growth-ds":2,"ml-engineer":1}' data-date="2024-06">
+          <article class="recruiter-role" data-relevance='{"product-ds":3,"growth-ds":2,"product-analyst":3,"analytics-engineer":1}' data-date="2024-06">
             <div class="recruiter-role-head"><h3>Climate Finance Strategy Intern</h3><span class="recruiter-org">Sustainable Solutions for Africa</span><span class="recruiter-date">Jun 2024 – Aug 2024</span></div>
             <ul class="recruiter-bullets">
-              <li data-lens="product-ds">Led the design of Namibia's Climate Finance Strategy, aligning national policy with UN SDG targets</li>
-              <li data-lens="product-ds ml-engineer">Developed financial models in Excel and Python to optimize climate-funding allocation, increasing accuracy by 25%</li>
-              <li data-lens="growth-ds">Produced visual reports and presentations adopted by senior policymakers</li>
+              <li data-lens="product-ds product-analyst">Led the design of Namibia's Climate Finance Strategy, aligning national policy with UN SDG targets</li>
+              <li data-lens="product-ds analytics-engineer">Developed financial models in Excel and Python to optimize climate-funding allocation, increasing accuracy by 25%</li>
+              <li data-lens="growth-ds product-analyst">Produced visual reports and presentations adopted by senior policymakers</li>
             </ul>
             <div class="recruiter-tags">Python · Excel · Financial Modeling · Policy</div>
           </article>
-          <article class="recruiter-role" data-relevance='{"product-ds":2,"growth-ds":2,"ml-engineer":3}' data-date="2023-05">
+          <article class="recruiter-role" data-relevance='{"product-ds":2,"growth-ds":2,"product-analyst":2,"analytics-engineer":3}' data-date="2023-05">
             <div class="recruiter-role-head"><h3>Data Science Intern</h3><span class="recruiter-org">NMB Bank Plc</span><span class="recruiter-date">May 2023 – Jun 2023</span></div>
             <ul class="recruiter-bullets">
-              <li data-lens="ml-engineer product-ds">Automated credit-risk analytics pipelines with Python and SQL, cutting report generation time by 20%</li>
-              <li data-lens="ml-engineer">Created predictive models to assess loan-default probability, informing SME lending strategy</li>
-              <li data-lens="growth-ds">Built Tableau dashboards used by management to track portfolio health</li>
+              <li data-lens="analytics-engineer product-ds">Automated credit-risk analytics pipelines with Python and SQL, cutting report generation time by 20%</li>
+              <li data-lens="product-ds">Created predictive models to assess loan-default probability, informing SME lending strategy</li>
+              <li data-lens="growth-ds product-analyst">Built Tableau dashboards used by management to track portfolio health</li>
             </ul>
             <div class="recruiter-tags">Python · SQL · Tableau · Predictive Modeling</div>
           </article>
@@ -412,8 +498,8 @@
       <section class="recruiter-section">
         <h2 class="recruiter-h2">Key Metrics</h2>
         <div class="recruiter-metrics">
-          <div class="recruiter-metric"><span class="recruiter-metric-val">23%</span><span class="recruiter-metric-label">Revenue Optimization</span></div>
-          <div class="recruiter-metric"><span class="recruiter-metric-val">71%</span><span class="recruiter-metric-label">Experiment Win Rate</span></div>
+          <div class="recruiter-metric"><span class="recruiter-metric-val">23%</span><span class="recruiter-metric-label">Revenue Optimization (simulated)</span></div>
+          <div class="recruiter-metric"><span class="recruiter-metric-val">12</span><span class="recruiter-metric-label">Experiment Templates Shipped</span></div>
           <div class="recruiter-metric"><span class="recruiter-metric-val">12</span><span class="recruiter-metric-label">Systems Built</span></div>
           <div class="recruiter-metric"><span class="recruiter-metric-val">40%</span><span class="recruiter-metric-label">Reporting Automation Gain</span></div>
         </div>
@@ -422,7 +508,7 @@
       <section class="recruiter-section recruiter-contact">
         <div class="recruiter-contact-buttons">
           <a href="Karen_Marie_Kasigila_Resume.pdf" class="recruiter-btn recruiter-btn-primary" download>Download Resume</a>
-          <a href="https://linkedin.com/in/karen-marie-kasigila-443b73242" target="_blank" rel="noopener noreferrer" class="recruiter-btn">LinkedIn</a>
+          <a href="https://www.linkedin.com/in/karen-marie-kasigila-443b73242" target="_blank" rel="noopener noreferrer" class="recruiter-btn">LinkedIn</a>
           <a href="https://github.com/kasigila" target="_blank" rel="noopener noreferrer" class="recruiter-btn">GitHub</a>
           <a href="mailto:Karen_Marie1@icloud.com" class="recruiter-btn">Email</a>
         </div>
@@ -437,6 +523,30 @@
       <span class="footer-right recruiter-only">Product Data Scientist</span>
     </div>
   </footer>
+
+  <!-- Evidence Modal (Creative mode) -->
+  <div id="evidence-modal" class="evidence-modal" role="dialog" aria-modal="true" aria-labelledby="evidence-modal-title" aria-describedby="evidence-modal-body" hidden>
+    <div class="evidence-modal-overlay" data-close-modal></div>
+    <div class="evidence-modal-content">
+      <div class="evidence-modal-header">
+        <h2 id="evidence-modal-title" class="evidence-modal-title"></h2>
+        <button type="button" class="evidence-modal-close" aria-label="Close modal" data-close-modal><i class="fa-solid fa-xmark"></i></button>
+      </div>
+      <div id="evidence-modal-body" class="evidence-modal-body"></div>
+    </div>
+  </div>
+
+  <!-- Skill Evidence Panel (Creative mode) -->
+  <div id="skill-evidence-panel" class="skill-evidence-panel" role="dialog" aria-modal="true" aria-labelledby="skill-evidence-title" hidden>
+    <div class="skill-evidence-overlay" data-close-skill-panel></div>
+    <div class="skill-evidence-content">
+      <div class="skill-evidence-header">
+        <h2 id="skill-evidence-title">Evidence</h2>
+        <button type="button" class="skill-evidence-close" aria-label="Close" data-close-skill-panel><i class="fa-solid fa-xmark"></i></button>
+      </div>
+      <div id="skill-evidence-body" class="skill-evidence-body"></div>
+    </div>
+  </div>
 
   <script src="script.js"></script>
 </body>
