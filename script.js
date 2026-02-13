@@ -36,7 +36,7 @@
       if (target) {
         e.preventDefault();
         target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        navbar.classList.remove('mobile-open');
+        closeMobileNav();
       }
     });
   });
@@ -299,14 +299,29 @@
   // ─── Mobile Nav ─────────────────────────────────────────────────────────
   const mobileToggle = document.querySelector('.nav-mobile-toggle');
 
+  function closeMobileNav() {
+    navbar.classList.remove('mobile-open');
+    if (mobileToggle) {
+      mobileToggle.setAttribute('aria-expanded', 'false');
+      mobileToggle.setAttribute('aria-label', 'Open menu');
+    }
+  }
+
   if (mobileToggle) {
-    mobileToggle.addEventListener('click', function() {
+    mobileToggle.addEventListener('click', function(e) {
+      e.stopPropagation();
       navbar.classList.toggle('mobile-open');
       const open = navbar.classList.contains('mobile-open');
       mobileToggle.setAttribute('aria-expanded', open);
       mobileToggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
     });
   }
+
+  document.addEventListener('click', function(e) {
+    if (navbar.classList.contains('mobile-open') && !navbar.contains(e.target)) {
+      closeMobileNav();
+    }
+  });
 
   // ─── KarenOS Modules: Expand/Collapse ────────────────────────────────────
   const moduleBlocks = document.querySelectorAll('.module-block');
