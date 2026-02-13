@@ -12,6 +12,7 @@
   const scrollProgress = document.getElementById('scroll-progress');
 
   function updateScrollProgress() {
+    if (!scrollProgress) return;
     const h = document.documentElement.scrollHeight - window.innerHeight;
     scrollProgress.style.width = h > 0 ? (window.scrollY / h) * 100 + '%' : '0%';
   }
@@ -40,16 +41,24 @@
     });
   });
 
-  // ─── Recruiter Mode ──────────────────────────────────────────────────────
+  // ─── Recruiter Mode (dual-view switch) ────────────────────────────────────
   const recruiterToggle = document.getElementById('recruiter-toggle');
   const heroRecruiterBtn = document.getElementById('hero-recruiter-btn');
-  const recruiterSummary = document.getElementById('recruiter-summary');
+  const creativeView = document.getElementById('creative-view');
+  const recruiterView = document.getElementById('recruiter-view');
 
   function setRecruiterMode(active) {
     document.body.classList.toggle('recruiter-mode', active);
     recruiterToggle.setAttribute('aria-pressed', active);
-    recruiterSummary.setAttribute('aria-hidden', !active);
-    recruiterSummary.style.display = active ? 'block' : 'none';
+    if (creativeView) {
+      creativeView.classList.toggle('view-active', !active);
+      creativeView.classList.toggle('view-hidden', active);
+    }
+    if (recruiterView) {
+      recruiterView.classList.toggle('view-active', active);
+      recruiterView.classList.toggle('view-hidden', !active);
+    }
+    if (active) window.scrollTo(0, 0);
     try {
       active ? sessionStorage.setItem('recruiter-mode', '1') : sessionStorage.removeItem('recruiter-mode');
     } catch (_) {}
@@ -341,10 +350,10 @@
     const traffic = parseInt(document.getElementById('rev-traffic')?.value || 50, 10);
     const conv = parseFloat(document.getElementById('rev-conv')?.value || 3, 10) / 100;
     const uplift = parseInt(document.getElementById('rev-uplift')?.value || 12, 10) / 100;
+    const arpu = parseFloat(document.getElementById('rev-arpu')?.value || 100, 10);
     const duration = parseInt(document.getElementById('rev-duration')?.value || 14, 10);
 
     const trafficK = traffic * 1000;
-    const arpu = 100;
     const dailyBaseline = trafficK * conv * arpu;
     const dailyLift = dailyBaseline * uplift;
     const revenueLift = dailyLift * duration;
@@ -388,7 +397,7 @@
     if (upliftVal) upliftVal.textContent = document.getElementById('rev-uplift')?.value + '%';
   }
 
-  ['rev-traffic', 'rev-conv', 'rev-uplift'].forEach(function(id) {
+  ['rev-traffic', 'rev-conv', 'rev-uplift', 'rev-arpu'].forEach(function(id) {
     const el = document.getElementById(id);
     if (el) el.addEventListener('input', updateRevenueEngine);
   });
@@ -533,6 +542,54 @@
     });
     layer.addEventListener('mouseleave', function() {
       if (archTooltip) archTooltip.classList.remove('visible');
+    });
+  });
+
+  // ─── Role Lens Filter (Recruiter Mode) ────────────────────────────────────
+  const roleLensBtns = document.querySelectorAll('.role-lens-btn');
+  const recruiterExperience = document.getElementById('recruiter-experience');
+
+  function applyRoleLens(lens) {
+    roleLensBtns.forEach(function(btn) {
+      btn.classList.toggle('active', btn.dataset.lens === lens);
+    });
+
+    const roles = recruiterExperience ? Array.from(recruiterExperience.querySelectorAll('.recruiter-role')) : [];
+    const bullets = recruiterExperience ? recruiterExperience.querySelectorAll('.recruiter-bullets li') : [];
+
+    bullets.forEach(function(li) {
+      const attr = li.getAttribute('data-lens');
+      const lenses = attr ? attr.split(/\s+/) : [];
+      li.classList.toggle('lens-highlight', lens !== 'all' && lenses.indexOf(lens) >= 0);
+    });
+
+    if (lens === 'all') {
+      roles.sort(function(a, b) {
+        var dateA = a.getAttribute('data-date') || '0';
+        var dateB = b.getAttribute('data-date') || '0';
+        return dateB.localeCompare(dateA);
+      });
+      roles.forEach(function(r) { recruiterExperience.appendChild(r); });
+      return;
+    }
+
+    roles.sort(function(a, b) {
+      let relA = 0, relB = 0;
+      try {
+        relA = JSON.parse(a.getAttribute('data-relevance') || '{}')[lens] || 0;
+        relB = JSON.parse(b.getAttribute('data-relevance') || '{}')[lens] || 0;
+      } catch (_) {}
+      if (relB !== relA) return relB - relA;
+      var dateA = a.getAttribute('data-date') || '0';
+      var dateB = b.getAttribute('data-date') || '0';
+      return dateB.localeCompare(dateA);
+    });
+    roles.forEach(function(r) { recruiterExperience.appendChild(r); });
+  }
+
+  roleLensBtns.forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      applyRoleLens(btn.dataset.lens);
     });
   });
 })();
