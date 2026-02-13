@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Risk-Aware Optimization Model | Karen Marie Kasigila</title>
+  <link rel="stylesheet" href="../style.css">
+  <style>
+    .case-study { max-width: 720px; margin: 0 auto; padding: 4rem 1.5rem; }
+    .case-study h1 { font-size: 1.75rem; margin-bottom: 0.5rem; }
+    .case-study .back-link { display: inline-block; margin-bottom: 2rem; color: var(--accent-pink); }
+    .summary-box { background: var(--card-bg); border: 1px solid rgba(255,255,255,0.06); border-radius: 12px; padding: 1.5rem; margin: 1.5rem 0; }
+    .summary-box h3 { font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-secondary); margin: 0 0 0.5rem; }
+    .summary-box p { margin: 0 0 0.75rem; font-size: 0.95rem; }
+    .case-study table { width: 100%; border-collapse: collapse; margin: 1rem 0; font-size: 0.9rem; }
+    .case-study th, .case-study td { padding: 0.6rem 0.75rem; text-align: left; border: 1px solid rgba(255,255,255,0.08); }
+    .case-study th { background: var(--card-bg); font-weight: 600; }
+  </style>
+</head>
+<body>
+  <div class="case-study">
+    <a href="../index.html#modules" class="back-link">&larr; Back to KarenOS</a>
+    <h1>Risk-Aware Optimization Model</h1>
+    <p style="color: var(--text-secondary); margin-bottom: 2rem;">Case Study — Product Data Scientist Portfolio</p>
+
+    <section>
+      <h2>90-Second Summary</h2>
+      <div class="summary-box">
+        <h3>Problem</h3>
+        <p>Optimization systems (e.g., fraud detection, risk scoring) face a tradeoff: aggressive thresholds reduce loss but increase user friction; conservative thresholds protect experience but increase operational risk.</p>
+        <h3>Approach</h3>
+        <p>Built a simulator that models precision vs recall as a function of sensitivity and risk tolerance. Outputs live risk probability, alert trigger state, and estimated loss avoided.</p>
+        <h3>Output</h3>
+        <p>Interactive controls for sensitivity and risk tolerance. Real-time precision-recall curve visualization and dollar impact of loss prevention.</p>
+        <h3>Decision</h3>
+        <p>Calibrate thresholds so alert triggers at risk probability ≥60% while keeping false-positive burden acceptable.</p>
+      </div>
+    </section>
+
+    <section>
+      <h2>Measurement Plan</h2>
+      <table>
+        <thead>
+          <tr><th>Time Horizon</th><th>Milestone</th><th>Success Criteria</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>0–30 days</td><td>Baseline model in place</td><td>Historical precision/recall measured; threshold options documented</td></tr>
+          <tr><td>30–60 days</td><td>A/B test on thresholds</td><td>Friction metrics (block rate, appeal rate) tracked by variant</td></tr>
+          <tr><td>60–90 days</td><td>Optimal threshold rollout</td><td>Loss avoided &gt; baseline; friction within SLA</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section>
+      <h2>Success Metrics &amp; Tripwires</h2>
+      <p><strong>Success:</strong> Reduction in operational loss; precision &gt; target; recall adequate for risk coverage; appeal rate below threshold.</p>
+      <p><strong>Tripwire (anti-success):</strong> Spike in customer complaints; increase in manual review queue; model drift detected via monitoring.</p>
+    </section>
+
+    <section>
+      <h2>Instrumentation / Event Taxonomy</h2>
+      <table>
+        <thead>
+          <tr><th>Event Name</th><th>Required Properties</th><th>Notes</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>risk_score_computed</td><td>entity_id, score, model_version</td><td>Every scoring invocation</td></tr>
+          <tr><td>alert_triggered</td><td>entity_id, score, threshold_used</td><td>When score exceeds threshold</td></tr>
+          <tr><td>alert_outcome</td><td>entity_id, outcome, loss_prevented</td><td>True/false positive resolution</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section>
+      <h2>Data Model Layer</h2>
+      <p><strong>Staging:</strong> Raw scoring events in <code>stg_risk_events</code>. Normalize timestamps and entity identifiers.</p>
+      <p><strong>Marts:</strong> <code>fct_risk_scores</code> — entity_id, score, threshold, outcome. <code>agg_precision_recall</code> — model_version, precision, recall, date.</p>
+      <p><strong>Tests:</strong> Uniqueness on (entity_id, timestamp); not_null on score and model_version; valid score range.</p>
+      <p><strong>Documentation:</strong> dbt docs; schema for downstream monitoring dashboards.</p>
+    </section>
+
+    <section style="margin-top: 2rem;">
+      <a href="https://github.com/kasigila/karenos/tree/main/risk-engine" target="_blank" rel="noopener noreferrer" class="btn btn-primary">View Code</a>
+      <a href="../Karen_Marie_Kasigila_Resume.pdf" class="btn btn-ghost" download>Resume</a>
+    </section>
+  </div>
+</body>
+</html>
