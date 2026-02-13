@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Revenue & Experimentation Engine | Karen Marie Kasigila</title>
+  <link rel="stylesheet" href="../style.css">
+  <style>
+    .case-study { max-width: 720px; margin: 0 auto; padding: 4rem 1.5rem; }
+    .case-study h1 { font-size: 1.75rem; margin-bottom: 0.5rem; }
+    .case-study .back-link { display: inline-block; margin-bottom: 2rem; color: var(--accent-pink); }
+    .summary-box { background: var(--card-bg); border: 1px solid rgba(255,255,255,0.06); border-radius: 12px; padding: 1.5rem; margin: 1.5rem 0; }
+    .summary-box h3 { font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-secondary); margin: 0 0 0.5rem; }
+    .summary-box p { margin: 0 0 0.75rem; font-size: 0.95rem; }
+    .case-study table { width: 100%; border-collapse: collapse; margin: 1rem 0; font-size: 0.9rem; }
+    .case-study th, .case-study td { padding: 0.6rem 0.75rem; text-align: left; border: 1px solid rgba(255,255,255,0.08); }
+    .case-study th { background: var(--card-bg); font-weight: 600; }
+  </style>
+</head>
+<body>
+  <div class="case-study">
+    <a href="../index.html#modules" class="back-link">&larr; Back to KarenOS</a>
+    <h1>Revenue & Experimentation Engine</h1>
+    <p style="color: var(--text-secondary); margin-bottom: 2rem;">Case Study — Product Data Scientist Portfolio</p>
+
+    <section>
+      <h2>90-Second Summary</h2>
+      <div class="summary-box">
+        <h3>Problem</h3>
+        <p>Product teams need to model revenue impact and rollout risk before launching experiments. Poor experiment design leads to false positives and revenue leakage.</p>
+        <h3>Approach</h3>
+        <p>Built an interactive simulator that takes traffic, conversion, uplift, and ARPU as inputs and outputs expected revenue lift, confidence intervals, statistical significance, and a GO/ITERATE/KILL recommendation.</p>
+        <h3>Output</h3>
+        <p>Web-based engine with sliders for traffic, conversion %, uplift %, ARPU, duration, and segment. Real-time visualization of confidence band and risk meter.</p>
+        <h3>Decision</h3>
+        <p>Ship when significance ≥95%, false-positive risk &lt;5%, and uplift ≥5%. Otherwise iterate or kill.</p>
+      </div>
+    </section>
+
+    <section>
+      <h2>Measurement Plan</h2>
+      <table>
+        <thead>
+          <tr><th>Time Horizon</th><th>Milestone</th><th>Success Criteria</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>0–30 days</td><td>Baseline established</td><td>Pre-experiment conversion/ARPU measured; traffic logs validated</td></tr>
+          <tr><td>30–60 days</td><td>Experiment run</td><td>Minimum sample size reached; no SRM detected</td></tr>
+          <tr><td>60–90 days</td><td>Rollout decision</td><td>Statistical significance achieved; revenue impact quantified</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section>
+      <h2>Success Metrics &amp; Tripwires</h2>
+      <p><strong>Success:</strong> Revenue lift &gt;5% with p&lt;0.05; false-positive rate &lt;5%; no degradation in core retention.</p>
+      <p><strong>Tripwire (anti-success):</strong> Sample ratio mismatch (SRM); cross-contamination between control/variant; external market events skewing results.</p>
+    </section>
+
+    <section>
+      <h2>Instrumentation / Event Taxonomy</h2>
+      <table>
+        <thead>
+          <tr><th>Event Name</th><th>Required Properties</th><th>Notes</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>experiment_impression</td><td>experiment_id, variant, user_id</td><td>Fired on assignment</td></tr>
+          <tr><td>experiment_conversion</td><td>experiment_id, variant, user_id, revenue</td><td>Conversion with revenue</td></tr>
+          <tr><td>experiment_session</td><td>experiment_id, variant, session_id, duration_sec</td><td>Engagement proxy</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section>
+      <h2>Data Model Layer</h2>
+      <p><strong>Staging:</strong> Raw event logs ingested into <code>stg_experiment_events</code>. Deduplication and timestamp normalization.</p>
+      <p><strong>Marts:</strong> <code>fct_experiment_results</code> — experiment_id, variant, conversions, revenue, sample_size. <code>fct_experiment_statistics</code> — lift, p_value, confidence_interval.</p>
+      <p><strong>Tests:</strong> Uniqueness on (experiment_id, user_id, variant); not_null on revenue for conversion events; referential integrity to experiment config.</p>
+      <p><strong>Documentation:</strong> dbt docs; column-level descriptions; lineage to upstream sources.</p>
+    </section>
+
+    <section style="margin-top: 2rem;">
+      <a href="https://github.com/kasigila/karenos/tree/main/revenue-engine" target="_blank" rel="noopener noreferrer" class="btn btn-primary">View Code</a>
+      <a href="../Karen_Marie_Kasigila_Resume.pdf" class="btn btn-ghost" download>Resume</a>
+    </section>
+  </div>
+</body>
+</html>
