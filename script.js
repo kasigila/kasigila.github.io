@@ -23,7 +23,7 @@
       sourceType: 'Simulated',
       assumptions: ['Traffic is evenly split between control and variant', 'Conversion events are independent', 'ARPU is constant across segments'],
       formula: 'Daily Lift = DAU × 0.5 × Conversion% × Uplift% × ARPU. Revenue Lift = Daily Lift × Duration (days)',
-      links: { caseStudy: 'case-studies/revenue-experimentation-engine.html', code: 'https://github.com/kasigila/karenos/tree/main/revenue-engine' }
+      links: { caseStudy: 'revenue-experimentation-engine.html', code: 'https://github.com/kasigila/karenos/tree/main/revenue-engine' }
     },
     'experiment-templates': {
       title: 'Experiment Templates Shipped',
@@ -31,7 +31,7 @@
       sourceType: 'Portfolio',
       assumptions: ['Templates follow standard A/B test design', 'Documentation and runbooks included'],
       formula: 'Count of distinct experiment templates documented and deployed',
-      links: { caseStudy: 'case-studies/revenue-experimentation-engine.html', code: 'https://github.com/kasigila/karenos/tree/main/revenue-engine' }
+      links: { caseStudy: 'revenue-experimentation-engine.html', code: 'https://github.com/kasigila/karenos/tree/main/revenue-engine' }
     },
     'systems-built': {
       title: 'Systems Built',
@@ -39,7 +39,7 @@
       sourceType: 'Internship / Hackathon',
       assumptions: ['Systems were used in production or by stakeholders', 'Includes dashboards, ETL, predictive models'],
       formula: 'Sum of distinct systems: NMB (credit analytics, Tableau), Ifakara (dashboards), SSA (financial models), JPM (Compass Connect)',
-      links: { caseStudy: 'case-studies/scalable-analytics-architecture.html', code: 'https://github.com/kasigila/karenos' }
+      links: { caseStudy: 'scalable-analytics-architecture.html', code: 'https://github.com/kasigila/karenos' }
     },
     'reporting-automation': {
       title: 'Reporting Automation Gain',
