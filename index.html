@@ -2,35 +2,329 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Karen Marie Kasigila</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <style>
-    body {
-      margin: 0;
-      font-family: -apple-system, BlinkMacSystemFont, sans-serif;
-      background-color: #0E0E10;
-      color: #ffffff;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      text-align: center;
-    }
-    h1 {
-      font-size: 3rem;
-    }
-    p {
-      color: #B3B3BD;
-    }
-    .accent {
-      color: #FF4FA3;
-    }
-  </style>
+  <title>KarenOS v1.0 | Karen Marie Kasigila</title>
+  <meta name="description" content="Product-driven data scientist. Designing intelligent systems for measurable impact.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div>
-    <h1>Karen <span class="accent">Marie</span> Kasigila</h1>
-    <p>Data Scientist building product intelligence systems.</p>
+  <!-- Scroll Progress Bar -->
+  <div id="scroll-progress" class="scroll-progress" aria-hidden="true"></div>
+
+  <!-- Cursor Glow -->
+  <div id="cursor-glow" class="cursor-glow" aria-hidden="true"></div>
+
+  <!-- Floating Particles (CSS) -->
+  <div class="particles" aria-hidden="true">
+    <span></span><span></span><span></span><span></span><span></span>
   </div>
+
+  <!-- System Navigation -->
+  <nav id="navbar" class="navbar">
+    <a href="#hero" class="nav-logo">KARENOS</a>
+    <ul class="nav-links">
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#systems">Systems</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <button id="recruiter-toggle" class="nav-recruiter-btn" aria-pressed="false">
+      Recruiter Mode
+    </button>
+    <button class="nav-mobile-toggle" aria-label="Open menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- Recruiter Summary (hidden by default) -->
+  <section id="recruiter-summary" class="recruiter-summary" aria-hidden="true">
+    <div class="container">
+      <h2>2-Minute Summary</h2>
+      <div class="summary-grid">
+        <div class="summary-card"><h3>Core Skills</h3><p>Machine Learning · Product Analytics · Python · SQL · Data Engineering · A/B Testing</p></div>
+        <div class="summary-card"><h3>Target Roles</h3><p>Data Scientist · ML Engineer · Product Analytics · Growth Data</p></div>
+        <div class="summary-card"><h3>Key Metrics</h3><p>25% accuracy lift · 20% pipeline efficiency · Policy-level impact</p></div>
+        <div class="summary-card"><h3>Work Authorization</h3><p>Authorized to work — [Update with your status]</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Hero: System Boot -->
+  <section id="hero" class="hero">
+    <div class="hero-bg-gradient" aria-hidden="true"></div>
+    <div class="container hero-inner">
+      <div class="hero-content reveal">
+        <p class="hero-boot">Booting KarenOS…</p>
+        <h1 class="hero-title">
+          <span class="hero-title-line">KAREN MARIE</span>
+          <span class="hero-title-line accent">KASIGILA</span>
+        </h1>
+        <p class="hero-subtitle">Product-Driven Data Scientist</p>
+        <p class="hero-typing" id="typing-line"></p>
+        <div class="hero-buttons">
+          <a href="#metrics" class="btn btn-primary">View System Metrics</a>
+          <button id="hero-recruiter-btn" class="btn btn-secondary">Recruiter Mode</button>
+          <a href="Karen_Marie_Kasigila_Resume.pdf" class="btn btn-ghost" download>Download Resume</a>
+        </div>
+      </div>
+      <div class="hero-visual reveal">
+        <div class="hero-avatar">
+          <div class="avatar-ring"></div>
+          <div class="avatar-placeholder">KMK</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Live Metrics Panel -->
+  <section id="metrics" class="metrics section">
+    <div class="container">
+      <h2 class="section-title">Live Metrics</h2>
+      <div class="metrics-grid">
+        <div class="metric-card reveal">
+          <span class="metric-label">Revenue Impact Simulated</span>
+          <span class="metric-value" data-target="23" data-suffix="%">0</span>
+        </div>
+        <div class="metric-card reveal">
+          <span class="metric-label">Experiment Win Rate</span>
+          <span class="metric-value" data-target="71" data-suffix="%">0</span>
+        </div>
+        <div class="metric-card reveal">
+          <span class="metric-label">Systems Built</span>
+          <span class="metric-value" data-target="12" data-suffix="">0</span>
+        </div>
+      </div>
+      <div class="slider-panel reveal">
+        <h3>Simulate Product Optimization</h3>
+        <div class="slider-control">
+          <label>
+            <span class="slider-label">Conversion Rate</span>
+            <span class="slider-value" id="conv-value">42%</span>
+          </label>
+          <input type="range" id="conv-slider" min="20" max="80" value="42">
+        </div>
+        <div class="slider-control">
+          <label>
+            <span class="slider-label">Revenue</span>
+            <span class="slider-value" id="revenue-value">$2.4M</span>
+          </label>
+          <input type="range" id="revenue-slider" min="1" max="10" value="2.4" step="0.1">
+        </div>
+        <div class="slider-control">
+          <label>
+            <span class="slider-label">Efficiency</span>
+            <span class="slider-value" id="efficiency-value">87%</span>
+          </label>
+          <input type="range" id="efficiency-slider" min="50" max="99" value="87">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Experience Timeline -->
+  <section id="experience" class="experience section">
+    <div class="container">
+      <h2 class="section-title">Experience</h2>
+      <div class="timeline">
+        <div class="timeline-item" data-expandable>
+          <div class="timeline-node"></div>
+          <div class="timeline-card">
+            <button class="timeline-card-header" aria-expanded="false" aria-controls="exp-1">
+              <div class="timeline-card-head">
+                <h3>Data Science Intern</h3>
+                <span class="timeline-org">Ifakara Health Institute</span>
+              </div>
+              <span class="timeline-duration">Jun 2025 – Aug 2025</span>
+              <span class="timeline-expand-icon">+</span>
+            </button>
+            <div id="exp-1" class="timeline-card-body" hidden>
+              <ul class="impact-list">
+                <li>Analyzed national malaria and community-health data using Python, SQL, and Pandas to identify high-risk zones</li>
+                <li>Built data dashboards that improved monitoring and reporting accuracy by 25%</li>
+                <li>Presented statistical findings to research and policy teams to support data-driven decision-making</li>
+              </ul>
+              <div class="tech-tags"><span>Python</span><span>SQL</span><span>Pandas</span><span>Dashboards</span></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="timeline-item" data-expandable>
+          <div class="timeline-node"></div>
+          <div class="timeline-card">
+            <button class="timeline-card-header" aria-expanded="false" aria-controls="exp-2">
+              <div class="timeline-card-head">
+                <h3>Climate Finance Strategy Intern</h3>
+                <span class="timeline-org">Sustainable Solutions for Africa</span>
+              </div>
+              <span class="timeline-duration">Jun 2024 – Aug 2024</span>
+              <span class="timeline-expand-icon">+</span>
+            </button>
+            <div id="exp-2" class="timeline-card-body" hidden>
+              <ul class="impact-list">
+                <li>Led the design of Namibia's Climate Finance Strategy, aligning national policy with UN SDG targets</li>
+                <li>Developed financial models in Excel and Python to optimize climate-funding allocation, increasing accuracy by 25%</li>
+                <li>Produced visual reports and presentations adopted by senior policymakers</li>
+              </ul>
+              <div class="tech-tags"><span>Python</span><span>Excel</span><span>Financial Modeling</span><span>Policy</span></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="timeline-item" data-expandable>
+          <div class="timeline-node"></div>
+          <div class="timeline-card">
+            <button class="timeline-card-header" aria-expanded="false" aria-controls="exp-3">
+              <div class="timeline-card-head">
+                <h3>Data Science Intern</h3>
+                <span class="timeline-org">NMB Bank Plc</span>
+              </div>
+              <span class="timeline-duration">May 2023 – Jun 2023</span>
+              <span class="timeline-expand-icon">+</span>
+            </button>
+            <div id="exp-3" class="timeline-card-body" hidden>
+              <ul class="impact-list">
+                <li>Automated credit-risk analytics pipelines with Python and SQL, cutting report generation time by 20%</li>
+                <li>Created predictive models to assess loan-default probability, informing SME lending strategy</li>
+                <li>Built Tableau dashboards used by management to track portfolio health</li>
+              </ul>
+              <div class="tech-tags"><span>Python</span><span>SQL</span><span>Tableau</span><span>Predictive Modeling</span></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="timeline-item" data-expandable>
+          <div class="timeline-node"></div>
+          <div class="timeline-card">
+            <button class="timeline-card-header" aria-expanded="false" aria-controls="exp-4">
+              <div class="timeline-card-head">
+                <h3>Data for Good Hackathon</h3>
+                <span class="timeline-org">J.P. Morgan Chase & Co.</span>
+              </div>
+              <span class="timeline-duration">Apr 2025</span>
+              <span class="timeline-expand-icon">+</span>
+            </button>
+            <div id="exp-4" class="timeline-card-body" hidden>
+              <ul class="impact-list">
+                <li>Built geospatial analytics dashboard (React, Node.js, Mapbox) mapping underserved ZIP codes</li>
+                <li>Designed Compass Connect, an AI-driven platform visualizing social-service impact across regions</li>
+              </ul>
+              <div class="tech-tags"><span>React</span><span>Node.js</span><span>Mapbox</span><span>Geospatial</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Systems Architecture -->
+  <section id="systems" class="systems section">
+    <div class="container">
+      <h2 class="section-title">Systems Architecture</h2>
+      <p class="systems-subtitle">End-to-end data flow from ingestion to decision</p>
+      <div class="architecture">
+        <div class="arch-row arch-row-1">
+          <div class="arch-block" data-tooltip="Ingest, validate, and store raw data. APIs, ETL pipelines, and data lake ingestion.">Data Collection</div>
+        </div>
+        <div class="arch-connector arch-connector-1"></div>
+        <div class="arch-row arch-row-2">
+          <div class="arch-block" data-tooltip="Clean, transform, and aggregate. dbt, Spark, and batch processing.">Processing</div>
+        </div>
+        <div class="arch-connector arch-connector-2"></div>
+        <div class="arch-row arch-row-3">
+          <div class="arch-block" data-tooltip="Train, validate, and version models. ML pipelines and feature stores.">Modeling</div>
+        </div>
+        <div class="arch-connector arch-connector-3"></div>
+        <div class="arch-row arch-row-4">
+          <div class="arch-block" data-tooltip="Ship to production. CI/CD, containers, and monitoring.">Deployment</div>
+        </div>
+        <div class="arch-connector arch-connector-4"></div>
+        <div class="arch-row arch-row-5">
+          <div class="arch-block arch-block-accent" data-tooltip="Turn predictions into actions. A/B tests, dashboards, and product signals.">Decision Layer</div>
+        </div>
+      </div>
+      <div class="arch-tooltip" id="arch-tooltip"></div>
+    </div>
+  </section>
+
+  <!-- Skill Intelligence Map -->
+  <section id="skills" class="skills section">
+    <div class="container">
+      <h2 class="section-title">Skill Intelligence Map</h2>
+      <div class="skills-grid">
+        <div class="skill-card" data-expandable>
+          <div class="skill-card-inner">
+            <h3>Machine Learning</h3>
+            <p class="skill-preview">Python · scikit-learn · TensorFlow · XGBoost</p>
+            <div class="skill-detail" hidden>
+              <p>Python · scikit-learn · TensorFlow · PyTorch · XGBoost · Feature Engineering · Predictive Modeling</p>
+            </div>
+          </div>
+        </div>
+        <div class="skill-card" data-expandable>
+          <div class="skill-card-inner">
+            <h3>Product Analytics</h3>
+            <p class="skill-preview">SQL · Looker · Amplitude · Funnels</p>
+            <div class="skill-detail" hidden>
+              <p>SQL · Looker · Amplitude · Mixpanel · Cohort Analysis · Funnels · Data Visualization</p>
+            </div>
+          </div>
+        </div>
+        <div class="skill-card" data-expandable>
+          <div class="skill-card-inner">
+            <h3>Data Engineering</h3>
+            <p class="skill-preview">BigQuery · Spark · Airflow · ETL</p>
+            <div class="skill-detail" hidden>
+              <p>BigQuery · Snowflake · Spark · Airflow · dbt · ETL Pipelines · Data Pipelines</p>
+            </div>
+          </div>
+        </div>
+        <div class="skill-card" data-expandable>
+          <div class="skill-card-inner">
+            <h3>Experimentation</h3>
+            <p class="skill-preview">A/B Testing · Statistical Significance</p>
+            <div class="skill-detail" hidden>
+              <p>A/B Testing · Statistical Significance · Power Analysis · Causal Inference · Hypothesis Testing</p>
+            </div>
+          </div>
+        </div>
+        <div class="skill-card" data-expandable>
+          <div class="skill-card-inner">
+            <h3>Cloud & Tools</h3>
+            <p class="skill-preview">AWS · GCP · Git · Docker</p>
+            <div class="skill-detail" hidden>
+              <p>AWS · GCP · Git · Docker · Jupyter · CI/CD · Firebase</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Terminal -->
+  <section id="contact" class="contact section">
+    <div class="container">
+      <h2 class="section-title">Let's Build Something That Matters.</h2>
+      <p class="contact-subtitle">Product. Systems. Impact.</p>
+      <div class="contact-buttons">
+        <a href="mailto:Karen_Marie1@icloud.com" class="contact-btn">Email</a>
+        <a href="https://linkedin.com/in/karen-marie-kasigila-443b73242" target="_blank" rel="noopener noreferrer" class="contact-btn">LinkedIn</a>
+        <a href="https://github.com/kasigila" target="_blank" rel="noopener noreferrer" class="contact-btn">GitHub</a>
+        <a href="Karen_Marie_Kasigila_Resume.pdf" class="contact-btn" download>Resume</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container footer-inner">
+      <span class="footer-left">Karen Marie Kasigila © 2026</span>
+      <span class="footer-right">KarenOS v1.0</span>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
 </body>
 </html>
