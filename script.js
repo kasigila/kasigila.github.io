@@ -3,10 +3,69 @@
  * Pure vanilla JS. No dependencies.
  * Scroll progress · Recruiter mode · Typing · Count-up · Slider
  * Architecture tooltips · Skill expand · K-key neon · Cursor glow
+ * Evidence drawer · Metrics toggle · Role lens · Copy resume
  */
 
 (function() {
   'use strict';
+
+  // ─── Reduced Motion ──────────────────────────────────────────────────────
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (prefersReducedMotion) {
+    document.body.classList.add('reduced-motion');
+  }
+
+  // ─── Evidence Drawer: Single Source of Truth ─────────────────────────────
+  const EVIDENCE = {
+    'revenue-impact': {
+      title: 'Revenue Impact Simulated',
+      definition: 'Estimated revenue lift from a conversion-optimization experiment under controlled traffic and variance assumptions.',
+      sourceType: 'Simulated',
+      assumptions: ['Traffic is evenly split between control and variant', 'Conversion events are independent', 'ARPU is constant across segments'],
+      formula: 'Daily Lift = DAU × 0.5 × Conversion% × Uplift% × ARPU. Revenue Lift = Daily Lift × Duration (days)',
+      links: { caseStudy: 'case-studies/revenue-experimentation-engine.html', code: 'https://github.com/kasigila/karenos/tree/main/revenue-engine' }
+    },
+    'experiment-templates': {
+      title: 'Experiment Templates Shipped',
+      definition: 'Number of reusable experiment frameworks (power analysis, segmentation logic, outcome definitions) delivered for product use.',
+      sourceType: 'Portfolio',
+      assumptions: ['Templates follow standard A/B test design', 'Documentation and runbooks included'],
+      formula: 'Count of distinct experiment templates documented and deployed',
+      links: { caseStudy: 'case-studies/revenue-experimentation-engine.html', code: 'https://github.com/kasigila/karenos/tree/main/revenue-engine' }
+    },
+    'systems-built': {
+      title: 'Systems Built',
+      definition: 'End-to-end data or analytics systems (dashboards, pipelines, models) delivered across internships and projects.',
+      sourceType: 'Internship / Hackathon',
+      assumptions: ['Systems were used in production or by stakeholders', 'Includes dashboards, ETL, predictive models'],
+      formula: 'Sum of distinct systems: NMB (credit analytics, Tableau), Ifakara (dashboards), SSA (financial models), JPM (Compass Connect)',
+      links: { caseStudy: 'case-studies/scalable-analytics-architecture.html', code: 'https://github.com/kasigila/karenos' }
+    },
+    'reporting-automation': {
+      title: 'Reporting Automation Gain',
+      definition: 'Percentage reduction in manual report generation time after automating credit-risk analytics pipelines.',
+      sourceType: 'Internship (NMB Bank Plc)',
+      assumptions: ['Baseline: manual report generation time', 'Automation covered standard report types'],
+      formula: '(Manual time - Automated time) / Manual time × 100',
+      links: { caseStudy: null, code: 'https://github.com/kasigila' }
+    },
+    'dashboards-delivered': {
+      title: 'Stakeholder Dashboards Delivered',
+      definition: 'Number of dashboards built and adopted by stakeholders across Ifakara, NMB, SSA, and JPM projects.',
+      sourceType: 'Internship / Hackathon',
+      assumptions: ['Dashboards were presented and used for decision-making'],
+      formula: 'Count: Ifakara (health monitoring), NMB (portfolio health), SSA (policy reports), JPM (geospatial)',
+      links: { caseStudy: null, code: 'https://github.com/kasigila' }
+    },
+    'accuracy-improvement': {
+      title: 'Monitoring Accuracy Improvement',
+      definition: 'Improvement in monitoring and reporting accuracy from dashboards built at Ifakara Health Institute.',
+      sourceType: 'Internship (Ifakara Health Institute)',
+      assumptions: ['Baseline accuracy measured before dashboard deployment'],
+      formula: 'Post-deployment accuracy - Pre-deployment accuracy',
+      links: { caseStudy: null, code: 'https://github.com/kasigila' }
+    }
+  };
 
   // ─── Scroll Progress ─────────────────────────────────────────────────────
   const scrollProgress = document.getElementById('scroll-progress');
@@ -75,11 +134,26 @@
     if (sessionStorage.getItem('recruiter-mode') === '1') setRecruiterMode(true);
   } catch (_) {}
 
+  // ─── Copy Resume Text (Recruiter Mode) ───────────────────────────────────
+  const recruiterCopyBtn = document.getElementById('recruiter-copy-btn');
+  if (recruiterCopyBtn) {
+    recruiterCopyBtn.addEventListener('click', function() {
+      var container = document.getElementById('recruiter-top');
+      if (!container) return;
+      var text = container.innerText.replace(/\s+/g, ' ').trim();
+      navigator.clipboard.writeText(text).then(function() {
+        var orig = recruiterCopyBtn.innerHTML;
+        recruiterCopyBtn.innerHTML = '<i class="fa-solid fa-check"></i> Copied!';
+        setTimeout(function() { recruiterCopyBtn.innerHTML = orig; }, 2000);
+      });
+    });
+  }
+
   // ─── Typing Effect ──────────────────────────────────────────────────────
   const typingLine = document.getElementById('typing-line');
   const typingText = 'Designing intelligent systems for measurable impact.';
 
-  if (typingLine) {
+  if (typingLine && !prefersReducedMotion) {
     let i = 0;
     typingLine.textContent = '';
     function type() {
@@ -131,6 +205,138 @@
   window.addEventListener('scroll', checkMetricsVisible, { passive: true });
   window.addEventListener('load', checkMetricsVisible);
 
+  // ─── Metrics Toggle (Portfolio vs Real-World) ───────────────────────────
+  const metricsToggleBtns = document.querySelectorAll('.metrics-toggle-btn');
+  const metricsPortfolio = document.querySelector('.metrics-portfolio');
+  const metricsRealWorld = document.querySelector('.metrics-real-world');
+
+  metricsToggleBtns.forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      const mode = btn.dataset.metricsMode;
+      metricsToggleBtns.forEach(function(b) {
+        b.classList.toggle('active', b.dataset.metricsMode === mode);
+        b.setAttribute('aria-pressed', b.dataset.metricsMode === mode);
+      });
+      if (metricsPortfolio) metricsPortfolio.hidden = mode !== 'portfolio';
+      if (metricsRealWorld) {
+        metricsRealWorld.hidden = mode !== 'real-world';
+        if (mode === 'real-world') {
+          metricsRealWorld.querySelectorAll('.metric-value[data-target]').forEach(function(el) {
+            if (!hasAnimated.has(el)) animateValue(el);
+          });
+        }
+      }
+    });
+  });
+
+  // ─── Evidence Modal ────────────────────────────────────────────────────
+  const evidenceModal = document.getElementById('evidence-modal');
+  const evidenceModalTitle = document.getElementById('evidence-modal-title');
+  const evidenceModalBody = document.getElementById('evidence-modal-body');
+  let lastEvidenceFocus = null;
+
+  function openEvidenceModal(metricId) {
+    const e = EVIDENCE[metricId];
+    if (!e) return;
+    lastEvidenceFocus = document.activeElement;
+    evidenceModalTitle.textContent = e.title;
+    evidenceModalBody.innerHTML = [
+      '<dl>',
+      '<dt>Definition</dt><dd>' + e.definition + '</dd>',
+      '<dt>Data Source</dt><dd>' + e.sourceType + '</dd>',
+      '<dt>Assumptions</dt><dd><ul>' + e.assumptions.map(function(a) { return '<li>' + a + '</li>'; }).join('') + '</ul></dd>',
+      '<dt>Calculation</dt><dd>' + e.formula + '</dd>',
+      '</dl>',
+      '<div class="evidence-links">',
+      e.links.caseStudy ? '<a href="' + e.links.caseStudy + '">View case study</a>' : '',
+      '<a href="' + e.links.code + '" target="_blank" rel="noopener noreferrer">View code</a>',
+      '</div>'
+    ].join('');
+    evidenceModal.hidden = false;
+    document.body.style.overflow = 'hidden';
+    var focusable = evidenceModal.querySelector('button[data-close-modal], a[href]');
+    if (focusable) focusable.focus();
+    evidenceModal.addEventListener('keydown', trapEvidenceFocus);
+  }
+
+  function closeEvidenceModal() {
+    evidenceModal.hidden = true;
+    document.body.style.overflow = '';
+    evidenceModal.removeEventListener('keydown', trapEvidenceFocus);
+    if (lastEvidenceFocus) lastEvidenceFocus.focus();
+  }
+
+  function trapEvidenceFocus(e) {
+    if (e.key !== 'Tab') return;
+    var focusable = evidenceModal.querySelectorAll('button, a[href]');
+    var first = focusable[0], last = focusable[focusable.length - 1];
+    if (e.shiftKey) {
+      if (document.activeElement === first) { e.preventDefault(); last.focus(); }
+    } else {
+      if (document.activeElement === last) { e.preventDefault(); first.focus(); }
+    }
+  }
+
+  evidenceModal.querySelectorAll('[data-close-modal]').forEach(function(el) {
+    el.addEventListener('click', closeEvidenceModal);
+  });
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape' && evidenceModal && !evidenceModal.hidden) closeEvidenceModal();
+  });
+
+  document.querySelectorAll('.evidence-btn').forEach(function(btn) {
+    btn.addEventListener('click', function(e) {
+      e.stopPropagation();
+      var card = btn.closest('.metric-card');
+      var id = card ? card.getAttribute('data-metric-id') : null;
+      if (id) openEvidenceModal(id);
+    });
+  });
+
+  // ─── Skill Evidence Panel ─────────────────────────────────────────────
+  const SKILL_EVIDENCE = {
+    ml: { module: 'Risk-Aware Optimization', deliverable: 'Predictive models for loan-default probability (NMB)' },
+    'product-analytics': { module: 'Ifakara Dashboards', deliverable: 'Monitoring dashboards with 25% accuracy improvement' },
+    'data-eng': { module: 'Scalable Analytics Architecture', deliverable: 'Architecture design (familiar with dbt, ETL)' },
+    experimentation: { module: 'Revenue & Experimentation Engine', deliverable: 'Experiment design, power analysis, rollout framework' },
+    cloud: { module: 'Multiple projects', deliverable: 'AWS/GCP exposure (familiar)' }
+  };
+  const skillEvidencePanel = document.getElementById('skill-evidence-panel');
+  const skillEvidenceTitle = document.getElementById('skill-evidence-title');
+  const skillEvidenceBody = document.getElementById('skill-evidence-body');
+  let lastSkillFocus = null;
+
+  function openSkillEvidence(skillId) {
+    var e = SKILL_EVIDENCE[skillId];
+    if (!e) return;
+    lastSkillFocus = document.activeElement;
+    var card = document.querySelector('.skill-card[data-skill-id="' + skillId + '"] h3');
+    skillEvidenceTitle.textContent = (card ? card.textContent : 'Skill') + ' — Evidence';
+    skillEvidenceBody.innerHTML = '<p><strong>Module:</strong> ' + e.module + '</p><p><strong>Deliverable:</strong> ' + e.deliverable + '</p>';
+    skillEvidencePanel.hidden = false;
+    skillEvidencePanel.querySelector('.skill-evidence-close').focus();
+  }
+
+  function closeSkillEvidence() {
+    skillEvidencePanel.hidden = true;
+    if (lastSkillFocus) lastSkillFocus.focus();
+  }
+
+  skillEvidencePanel.querySelectorAll('[data-close-skill-panel]').forEach(function(el) {
+    el.addEventListener('click', closeSkillEvidence);
+  });
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape' && skillEvidencePanel && !skillEvidencePanel.hidden) closeSkillEvidence();
+  });
+
+  document.querySelectorAll('.skill-evidence-btn').forEach(function(btn) {
+    btn.addEventListener('click', function(e) {
+      e.stopPropagation();
+      var id = btn.getAttribute('data-skill-id');
+      if (id) openSkillEvidence(id);
+    });
+  });
+
   // ─── Slider: Simulate Product Optimization ─────────────────────────────
   const convSlider = document.getElementById('conv-slider');
   const revenueSlider = document.getElementById('revenue-slider');
@@ -140,12 +346,19 @@
   const efficiencyValue = document.getElementById('efficiency-value');
 
   function updateSliderDisplays() {
-    if (convValue && convSlider) convValue.textContent = convSlider.value + '%';
+    if (convValue && convSlider) {
+      convValue.textContent = convSlider.value + '%';
+      convSlider.setAttribute('aria-valuenow', convSlider.value);
+    }
     if (revenueValue && revenueSlider) {
       const v = parseFloat(revenueSlider.value);
       revenueValue.textContent = v >= 1 ? '$' + v.toFixed(1) + 'M' : '$' + (v * 1000).toFixed(0) + 'K';
+      revenueSlider.setAttribute('aria-valuenow', revenueSlider.value);
     }
-    if (efficiencyValue && efficiencySlider) efficiencyValue.textContent = efficiencySlider.value + '%';
+    if (efficiencyValue && efficiencySlider) {
+      efficiencyValue.textContent = efficiencySlider.value + '%';
+      efficiencySlider.setAttribute('aria-valuenow', efficiencySlider.value);
+    }
   }
 
   [convSlider, revenueSlider, efficiencySlider].forEach(function(slider) {
@@ -217,19 +430,31 @@
   const skillCards = document.querySelectorAll('.skill-card[data-expandable]');
 
   skillCards.forEach(function(card) {
-    card.addEventListener('click', function() {
+    card.setAttribute('tabindex', '0');
+    card.setAttribute('role', 'button');
+    card.setAttribute('aria-expanded', 'false');
+    card.addEventListener('keydown', function(e) {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        card.click();
+      }
+    });
+    card.addEventListener('click', function(e) {
+      if (e.target.closest('.skill-evidence-btn')) return;
       const expanded = card.classList.contains('expanded');
       const preview = card.querySelector('.skill-preview');
       const detail = card.querySelector('.skill-detail');
 
       if (expanded) {
         card.classList.remove('expanded');
+        card.setAttribute('aria-expanded', 'false');
         if (preview) { preview.hidden = false; }
         if (detail) { detail.hidden = true; detail.setAttribute('aria-hidden', 'true'); }
       } else {
         skillCards.forEach(function(c) {
           if (c !== card) {
             c.classList.remove('expanded');
+            c.setAttribute('aria-expanded', 'false');
             var p = c.querySelector('.skill-preview');
             var d = c.querySelector('.skill-detail');
             if (p) p.hidden = false;
@@ -237,6 +462,7 @@
           }
         });
         card.classList.add('expanded');
+        card.setAttribute('aria-expanded', 'true');
         if (preview) preview.hidden = true;
         if (detail) { detail.hidden = false; detail.setAttribute('aria-hidden', 'false'); }
       }
@@ -251,16 +477,16 @@
       const rect = el.getBoundingClientRect();
       if (rect.top < window.innerHeight - 80) {
         el.style.opacity = '1';
-        el.style.transform = 'translateY(0)';
+        el.style.transform = prefersReducedMotion ? 'none' : 'translateY(0)';
       }
     });
   }
 
   revealEls.forEach(function(el) {
-    el.style.transition = 'opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1), transform 0.6s cubic-bezier(0.4, 0, 0.2, 1)';
+    el.style.transition = prefersReducedMotion ? 'none' : 'opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1), transform 0.6s cubic-bezier(0.4, 0, 0.2, 1)';
     if (!el.classList.contains('visible') && !el.classList.contains('metric-card') && !el.classList.contains('slider-panel')) {
-      el.style.opacity = '0';
-      el.style.transform = 'translateY(24px)';
+      el.style.opacity = prefersReducedMotion ? '1' : '0';
+      el.style.transform = prefersReducedMotion ? 'none' : 'translateY(24px)';
     }
   });
 
@@ -271,7 +497,7 @@
   const cursorGlow = document.getElementById('cursor-glow');
   let mx = 0, my = 0, gx = 0, gy = 0;
 
-  if (cursorGlow && !('ontouchstart' in window)) {
+  if (cursorGlow && !('ontouchstart' in window) && !prefersReducedMotion) {
     document.addEventListener('mousemove', function(e) {
       mx = e.clientX;
       my = e.clientY;
@@ -322,6 +548,11 @@
       closeMobileNav();
     }
   });
+
+  const sidebarOverlay = document.getElementById('nav-sidebar-overlay');
+  if (sidebarOverlay) {
+    sidebarOverlay.addEventListener('click', closeMobileNav);
+  }
 
   // ─── KarenOS Modules: Expand/Collapse ────────────────────────────────────
   const moduleBlocks = document.querySelectorAll('.module-block');
