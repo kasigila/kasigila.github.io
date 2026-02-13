@@ -298,4 +298,241 @@
       mobileToggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
     });
   }
+
+  // ─── KarenOS Modules: Expand/Collapse ────────────────────────────────────
+  const moduleBlocks = document.querySelectorAll('.module-block');
+
+  moduleBlocks.forEach(function(block) {
+    const header = block.querySelector('.module-header');
+    const body = block.querySelector('.module-body');
+
+    if (!header || !body) return;
+
+    header.addEventListener('click', function() {
+      const expanded = block.classList.contains('expanded');
+
+      moduleBlocks.forEach(function(other) {
+        if (other !== block) {
+          other.classList.remove('expanded');
+          var oBody = other.querySelector('.module-body');
+          var oHeader = other.querySelector('.module-header');
+          if (oBody) oBody.hidden = true;
+          if (oHeader) oHeader.setAttribute('aria-expanded', 'false');
+        }
+      });
+
+      if (expanded) {
+        block.classList.remove('expanded');
+        header.setAttribute('aria-expanded', 'false');
+        body.hidden = true;
+      } else {
+        block.classList.add('expanded');
+        header.setAttribute('aria-expanded', 'true');
+        body.hidden = false;
+        if (block.dataset.module === 'revenue') updateRevenueEngine();
+        if (block.dataset.module === 'risk') updateRiskEngine();
+        if (block.dataset.module === 'arch') updateArchSimulator();
+      }
+    });
+  });
+
+  // ─── Revenue Intelligence Engine ───────────────────────────────────────
+  function updateRevenueEngine() {
+    const traffic = parseInt(document.getElementById('rev-traffic')?.value || 50, 10);
+    const conv = parseFloat(document.getElementById('rev-conv')?.value || 3, 10) / 100;
+    const uplift = parseInt(document.getElementById('rev-uplift')?.value || 12, 10) / 100;
+    const duration = parseInt(document.getElementById('rev-duration')?.value || 14, 10);
+
+    const trafficK = traffic * 1000;
+    const arpu = 100;
+    const dailyBaseline = trafficK * conv * arpu;
+    const dailyLift = dailyBaseline * uplift;
+    const revenueLift = dailyLift * duration;
+
+    const n = Math.floor(trafficK * 0.5 * duration);
+    const power = Math.sqrt(n) * uplift * 10;
+    const significance = Math.min(99.9, Math.max(0, 50 + power));
+    const riskFP = Math.max(0.1, Math.min(15, 100 - significance * 0.9));
+
+    let decision = 'iterate';
+    if (significance >= 95 && riskFP < 5 && uplift >= 0.05) decision = 'go';
+    else if (significance < 80 || riskFP > 10) decision = 'kill';
+
+    const ciLow = revenueLift * 0.7;
+    const ciHigh = revenueLift * 1.3;
+
+    const impactEl = document.getElementById('rev-impact');
+    const ciBand = document.getElementById('rev-ci-band');
+    const ciRange = document.getElementById('rev-ci-range');
+    const sigEl = document.getElementById('rev-significance');
+    const riskFill = document.getElementById('rev-risk-fill');
+    const riskPct = document.getElementById('rev-risk-pct');
+    const decisionEl = document.getElementById('rev-decision');
+    const trafficVal = document.getElementById('rev-traffic-val');
+    const upliftVal = document.getElementById('rev-uplift-val');
+
+    if (impactEl) {
+      var fmt = revenueLift >= 1e6 ? (revenueLift / 1e6).toFixed(1) + 'M' : revenueLift >= 1000 ? (revenueLift / 1000).toFixed(1) + 'K' : Math.round(revenueLift);
+      impactEl.textContent = '$' + fmt;
+    }
+    if (ciBand) ciBand.style.background = 'linear-gradient(90deg, transparent ' + (30 + significance * 0.4) + '%, var(--accent-pink) 50%, transparent ' + (70 - significance * 0.4) + '%)';
+    if (ciRange) ciRange.textContent = '$' + Math.round(ciLow) + ' – $' + Math.round(ciHigh);
+    if (sigEl) sigEl.textContent = significance.toFixed(1) + '%';
+    if (riskFill) riskFill.style.width = riskFP + '%';
+    if (riskPct) riskPct.textContent = riskFP.toFixed(1) + '%';
+    if (decisionEl) {
+      decisionEl.textContent = decision.toUpperCase();
+      decisionEl.className = 'decision-badge ' + decision;
+    }
+    if (trafficVal) trafficVal.textContent = traffic + 'K';
+    if (upliftVal) upliftVal.textContent = document.getElementById('rev-uplift')?.value + '%';
+  }
+
+  ['rev-traffic', 'rev-conv', 'rev-uplift'].forEach(function(id) {
+    const el = document.getElementById(id);
+    if (el) el.addEventListener('input', updateRevenueEngine);
+  });
+  ['rev-duration', 'rev-segment'].forEach(function(id) {
+    const el = document.getElementById(id);
+    if (el) el.addEventListener('change', updateRevenueEngine);
+  });
+
+  // ─── Risk Intelligence Engine ────────────────────────────────────────────
+  function updateRiskEngine() {
+    const sens = parseInt(document.getElementById('risk-sensitivity')?.value || 70, 10) / 100;
+    const tol = parseInt(document.getElementById('risk-tolerance')?.value || 30, 10) / 100;
+
+    const riskProb = Math.round((0.3 + sens * 0.5 - tol * 0.2) * 100);
+    const clampedProb = Math.max(5, Math.min(95, riskProb));
+    const alertActive = clampedProb >= 60;
+    const lossAvoided = Math.round(clampedProb * 1200 * sens);
+
+    const precision = 0.5 + sens * 0.4;
+    const recall = 0.6 + sens * 0.35 - tol * 0.2;
+
+    const sensVal = document.getElementById('risk-sens-val');
+    const tolVal = document.getElementById('risk-tol-val');
+    const probEl = document.getElementById('risk-prob');
+    const alertEl = document.getElementById('risk-alert');
+    const lossEl = document.getElementById('risk-loss');
+    const prPath = document.getElementById('pr-path');
+
+    if (sensVal) sensVal.textContent = (sens * 100) + '%';
+    if (tolVal) tolVal.textContent = (tol * 100) + '%';
+    if (probEl) probEl.textContent = clampedProb + '%';
+    if (alertEl) {
+      alertEl.textContent = alertActive ? 'ACTIVE' : 'INACTIVE';
+      alertEl.className = 'risk-alert ' + (alertActive ? 'active' : 'inactive');
+    }
+    if (lossEl) lossEl.textContent = '$' + (lossAvoided >= 1000 ? (lossAvoided / 1000).toFixed(1) + 'K' : lossAvoided);
+
+    if (prPath) {
+      const pts = [];
+      for (let i = 0; i <= 20; i++) {
+        const t = i / 20;
+        const x = 10 + t * 180;
+        const y = 110 - (recall * 0.3 + precision * 0.5 * Math.sin(t * Math.PI)) * 80;
+        pts.push(x + ',' + y);
+      }
+      prPath.setAttribute('d', 'M' + pts.join(' L'));
+    }
+  }
+
+  ['risk-sensitivity', 'risk-tolerance'].forEach(function(id) {
+    const el = document.getElementById(id);
+    if (el) el.addEventListener('input', updateRiskEngine);
+  });
+
+  // ─── Architecture Simulator ──────────────────────────────────────────────
+  const ARCH_CONFIG = {
+    startup: {
+      storage: 'Postgres',
+      processing: 'Python ETL',
+      modeling: 'Batch Retraining',
+      deployment: 'Simple Cron',
+      monitoring: 'Basic Logs',
+      latency: '2–4 hrs',
+      cost: '$500/mo',
+      reliability: '92%',
+      complexity: 'Low'
+    },
+    growth: {
+      storage: 'Snowflake',
+      processing: 'dbt + Airflow',
+      modeling: 'ML Pipeline',
+      deployment: 'CI/CD',
+      monitoring: 'Metrics + Alerts',
+      latency: '15–60 min',
+      cost: '$8K/mo',
+      reliability: '97%',
+      complexity: 'Medium'
+    },
+    enterprise: {
+      storage: 'Kafka + Data Lake',
+      processing: 'Spark + Feature Store',
+      modeling: 'Real-time Inference',
+      deployment: 'K8s + Observability',
+      monitoring: 'Full Observability',
+      latency: '< 100ms',
+      cost: '$45K/mo',
+      reliability: '99.9%',
+      complexity: 'High'
+    }
+  };
+
+  function updateArchSimulator() {
+    const active = document.querySelector('.scale-btn.active');
+    const scale = active?.dataset.scale || 'startup';
+    const config = ARCH_CONFIG[scale] || ARCH_CONFIG.startup;
+
+    const layers = document.querySelectorAll('.arch-diagram .arch-layer');
+    const layerKeys = ['storage', 'processing', 'modeling', 'deployment', 'monitoring'];
+    layers.forEach(function(layer, i) {
+      const key = layerKeys[i];
+      if (key && config[key]) {
+        layer.textContent = config[key];
+        layer.classList.toggle('accent', key === 'monitoring');
+      }
+    });
+
+    const latencyEl = document.getElementById('arch-latency');
+    const costEl = document.getElementById('arch-cost');
+    const relEl = document.getElementById('arch-reliability');
+    const compEl = document.getElementById('arch-complexity');
+
+    if (latencyEl) latencyEl.textContent = config.latency;
+    if (costEl) costEl.textContent = config.cost;
+    if (relEl) relEl.textContent = config.reliability;
+    if (compEl) compEl.textContent = config.complexity;
+  }
+
+  document.querySelectorAll('.scale-btn').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      document.querySelectorAll('.scale-btn').forEach(function(b) { b.classList.remove('active'); });
+      btn.classList.add('active');
+      updateArchSimulator();
+    });
+  });
+
+  document.querySelectorAll('#arch-diagram .arch-layer[data-tooltip]').forEach(function(layer) {
+    layer.addEventListener('mouseenter', function(e) {
+      if (archTooltip) {
+        archTooltip.textContent = layer.getAttribute('data-tooltip');
+        archTooltip.style.left = (e.clientX + 16) + 'px';
+        archTooltip.style.top = (e.clientY + 16) + 'px';
+        archTooltip.classList.add('visible');
+      }
+    });
+    layer.addEventListener('mousemove', function(e) {
+      if (archTooltip && archTooltip.classList.contains('visible')) {
+        var w = archTooltip.offsetWidth || 280;
+        var h = archTooltip.offsetHeight || 60;
+        archTooltip.style.left = Math.min(e.clientX + 16, window.innerWidth - w - 16) + 'px';
+        archTooltip.style.top = Math.min(e.clientY + 16, window.innerHeight - h - 16) + 'px';
+      }
+    });
+    layer.addEventListener('mouseleave', function() {
+      if (archTooltip) archTooltip.classList.remove('visible');
+    });
+  });
 })();
