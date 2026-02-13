@@ -161,6 +161,8 @@ body.recruiter-mode .nav-recruiter-btn .recruiter-label { display: inline; }
 
 .nav-links {
   display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
   gap: 2rem;
   list-style: none;
   margin: 0;
@@ -1436,24 +1438,30 @@ body.recruiter-mode .arch-block:hover {
 }
 
 @media (max-width: 768px) {
-  .nav-links, .nav-recruiter-btn { display: none; }
+  .nav-links { display: none; }
   .nav-mobile-toggle { display: flex; }
+  .nav-recruiter-btn { display: inline-flex; }
+
+  .navbar {
+    flex-wrap: wrap;
+  }
 
   .navbar.mobile-open .nav-links {
     display: flex;
-    position: absolute;
-    top: 100%;
-    left: 0;
-    right: 0;
-    flex-direction: column;
-    padding: 1rem;
-    background: var(--bg-secondary);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    order: 3;
+    width: 100%;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 1rem 1.5rem;
+    padding: 1rem 0 0;
+    margin-top: 0.5rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
   }
 
-  .navbar.mobile-open .nav-recruiter-btn {
-    display: inline-block;
-    margin-top: 0.75rem;
+  .navbar.mobile-open .nav-links a {
+    font-size: 0.85rem;
   }
 
   .hero-inner { flex-direction: column; text-align: center; }
