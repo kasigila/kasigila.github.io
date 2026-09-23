@@ -1,56 +1,36 @@
-# Karen Marie Kasigila | Product Data Scientist
+This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
-**Product-driven data scientist. Designing intelligent systems for measurable impact.**
+## Getting Started
 
-Personal portfolio and interactive resume for Karen Marie Kasigila. Combines a creative "KarenOS" experience with a recruiter-focused view and live simulations that demonstrate product thinking.
+First, run the development server:
 
-🌐 **Live site:** [kasigila.github.io](https://kasigila.github.io/)
-
----
-
-## Features
-
-### Dual View Modes
-- **Creative Mode** — KarenOS-inspired experience with animated metrics, systems architecture visualization, and interactive modules
-- **Recruiter Mode** — Streamlined view with executive snapshot, role targeting, and copyable resume text
-
-### Interactive Modules
-- **Revenue & Experimentation Engine** — Simulates A/B test design, revenue lift, and rollout decisions under realistic traffic and variance
-- **Risk-Aware Optimization Model** — Models precision/recall tradeoffs, loss prevention, and threshold tuning
-- **Scalable Analytics Architecture Simulator** — Dynamic architecture modeling across startup, growth, and enterprise scales
-
-### Live Metrics
-- Portfolio simulations (revenue impact, experiment templates, systems built)
-- Real-world impact metrics (reporting automation, dashboards delivered, accuracy improvement)
-
----
-
-## Tech Stack
-
-- **Frontend:** HTML, CSS, JavaScript (vanilla)
-- **Fonts:** Inter, JetBrains Mono
-- **Icons:** Font Awesome
-- **Hosting:** GitHub Pages
-
----
-
-## Project Structure
-
-```
-├── index.html              # Main portfolio
-├── revenue-experimentation-engine.html
-├── risk-aware-optimization.html
-├── scalable-analytics-architecture.html
-├── style.css
-└── script.js
+```bash
+npm run dev
+# or
+yarn dev
+# or
+pnpm dev
+# or
+bun dev
 ```
 
----
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-## Contact
+You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
-- **Email:** Karen_Marie1@icloud.com
-- **LinkedIn:** [karen-marie-kasigila-443b73242](https://www.linkedin.com/in/karen-marie-kasigila-443b73242)
-- **GitHub:** [@kasigila](https://github.com/kasigila)
+This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
-© 2026 Karen Marie Kasigila
+## Learn More
+
+To learn more about Next.js, take a look at the following resources:
+
+- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
+- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+
+You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+
+## Deploy on Vercel
+
+The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+
+Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
