@@ -32,7 +32,7 @@ export function Nav({
   return (
     <header className="navbar">
       <a className="nav-logo" href="#top" onClick={() => setOpen(false)}>
-        KMK
+        KM
       </a>
       {open ? (
         <button
