@@ -306,20 +306,16 @@ a { color: inherit; }
 
 @keyframes avatarSpin { to { transform: rotate(360deg); } }
 
-.avatar-placeholder {
+.avatar-photo {
   position: absolute;
   inset: 8px;
+  width: calc(100% - 16px);
+  height: calc(100% - 16px);
   border-radius: 50%;
+  object-fit: cover;
+  object-position: center 28%;
   background: #ffffff;
   border: 1px solid rgba(153, 0, 0, 0.35);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-family: var(--font-mono-face), monospace;
-  font-size: 2.5rem;
-  font-weight: 700;
-  color: var(--accent-pink);
-  letter-spacing: 0.1em;
 }
 
 .section { padding: 4rem 0; }
@@ -613,7 +609,7 @@ section[id] { scroll-margin-top: 5.5rem; }
   .hero-inner { flex-direction: column; text-align: center; }
   .hero-subtitle, .hero-note { margin-left: auto; margin-right: auto; }
   .hero-buttons { justify-content: center; }
-  .hero-avatar { width: 200px; height: 200px; }
+  .hero-avatar { width: 200px; height: 200px; margin-inline: auto; }
   .metrics-grid, .work-grid, .edu-grid { grid-template-columns: 1fr; }
 }
 

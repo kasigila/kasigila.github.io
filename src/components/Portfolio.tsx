@@ -137,10 +137,16 @@ export function Portfolio() {
                   </a>
                 </div>
               </div>
-              <div className="hero-visual" aria-hidden>
+              <div className="hero-visual">
                 <div className="hero-avatar">
-                  <div className="avatar-ring" />
-                  <div className="avatar-placeholder">KM</div>
+                  <div className="avatar-ring" aria-hidden />
+                  <img
+                    className="avatar-photo"
+                    src="/karen-marie-kasigila.jpg"
+                    alt="Portrait of Karen Marie Kasigila"
+                    width={244}
+                    height={244}
+                  />
                 </div>
               </div>
             </div>
